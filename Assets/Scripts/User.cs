@@ -7,6 +7,7 @@ public class User
 {
     // BASIC INFO 
     private string username;
+    private string uID;
     private string password;
     private string email;
     private DateTime last_active;
@@ -30,6 +31,7 @@ public class User
     public User(string username, string password, string email)
     {
         this.username = username;
+        this.uID = new_uID();
         this.password = password;  // TODO: plaintext password oof
         this.email = email;
         this.last_active = DateTime.Now;
@@ -42,8 +44,27 @@ public class User
         // this.icon_filenames.Add(default_icon.png) // TODO: not sure if this is how it should be stored? Sprite maybe?
         // this.instruments.Add(DefaultInstrument)
         // this.boosts.Add(2xXP)                     // TODO: free boost to start, encourage initial engagement ?
+
+        // Add user to app meta data, must occur at end of instantiation
+        DoEarMiMeta meta = DoEarMiMeta.Instance();
+        meta.add_user(this);
     }
 
+
+    private string new_uID()
+    {
+        return Guid.NewGuid().ToString();
+    }
+
+    public string get_uID()
+    {
+        return this.uID;
+    }
+
+    public string user_to_json()
+    {
+        return JsonUtility.ToJson(this);
+    }
 
     public void update_username(string name)
     {
