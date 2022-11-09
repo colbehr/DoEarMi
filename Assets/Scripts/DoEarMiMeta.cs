@@ -18,14 +18,18 @@ public sealed class DoEarMiMeta
     private Hashtable user_files;
 
     private static string filepath = "./Assets/Users/";
+    
+    // Default instrument for all users
+    private static string default_instrument = "EPianoI";
 
-
-    DoEarMiMeta()
+    // Instance is null initializer
+    private DoEarMiMeta()
     {
         users = new List<User>();
         user_files = new Hashtable();
     }
 
+    // Entry point for DoEarMiMeta singleton
     public static DoEarMiMeta Instance()
     {
         // double locking
@@ -41,7 +45,13 @@ public sealed class DoEarMiMeta
         }
 
         return instance;
-    } 
+    }
+
+
+    public string get_default_instrument()
+    {
+        return default_instrument;
+    }
 
 
     // User added when new account is created
@@ -71,12 +81,10 @@ public sealed class DoEarMiMeta
         string uID = user.get_uID();
         string path = filepath + user_files[uID].ToString();
 
-        // lock (file_padlock)
-        // {
-            // // clear file contents
-            // File.WriteAllText(path, string.Empty);
-            // write user json to file
-        File.WriteAllText(path, user_json);
-        // }
+        lock (file_padlock)
+        {
+            // write user json to file, overwrites any existing content
+            File.WriteAllText(path, user_json);
+        }
     }
 }
