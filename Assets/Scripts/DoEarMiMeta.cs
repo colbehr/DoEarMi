@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 
@@ -51,7 +52,7 @@ public sealed class DoEarMiMeta
 
         // add user to user_files hashtable, where uID is the key and filepath is the value
         string uID = user.get_uID();
-        string user_file = filepath + "user_" + uID + ".json";
+        string user_file = "user_" + uID + ".json";
         user_files.Add(uID, user_file);
 
         // save new user data
@@ -59,21 +60,23 @@ public sealed class DoEarMiMeta
     }
 
 
-    // TODO: Add function to generate synthetic user data for testing
+    // TODO: Add function to generate synthetic user data for prototype
     // public void synthetic_user_data() {}
 
 
-    // TODO: how often/where should this be called?
+    // TODO: how often/where should this be called? Do we need an observer class?
     public void save_user_data(User user)
     {
         string user_json = user.user_to_json();
         string uID = user.get_uID();
-        string path = user_files[uID].ToString();
+        string path = filepath + user_files[uID].ToString();
 
         // lock (file_padlock)
         // {
-            
+            // // clear file contents
+            // File.WriteAllText(path, string.Empty);
+            // write user json to file
+        File.WriteAllText(path, user_json);
         // }
-
     }
 }

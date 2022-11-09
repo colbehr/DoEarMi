@@ -3,20 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class User
-{
-    // BASIC INFO 
-    private string username;
-    private string uID;
-    private string password;
-    private string email;
+{   
+    
+    // BASIC INFO
+    [SerializeField]
+    private string username, uID, password, email;
+    [SerializeField]
     private DateTime last_active;
     // private string active_icon_filename; // TODO: not sure if this is how it should be stored? Sprite maybe?
 
     // STATS
-    private int xp;
-    private int streak;
-    private int credits;
+    [SerializeField]
+    private int xp, streak, credits;
+    [SerializeField]
     private bool streak_frozen;
 
     // COLLECTIONS
@@ -63,6 +64,7 @@ public class User
 
     public string user_to_json()
     {
+        // for prototype this is fine, but long-term could cause loading errors for old user types is new User class isn't created
         return JsonUtility.ToJson(this);
     }
 
