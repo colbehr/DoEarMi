@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * 
+ * Uses EventSystem gameobject to trigger animations on button hightlight
+ */
 public class Navigation : MonoBehaviour
 {
     public GameObject buttonHighlight;
