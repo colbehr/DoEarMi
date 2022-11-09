@@ -10,6 +10,7 @@ using UnityEngine;
 public class Navigation : MonoBehaviour
 {
     public GameObject buttonHighlight;
+    public GameObject pageTitleText;
     private Animation anim;
     private string currentLocation;
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class Navigation : MonoBehaviour
             anim.Play("leaderboardToPractice");
         }
         currentLocation = "practice";
+        pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
         print("toPractice");
     }
 
@@ -50,8 +52,9 @@ public class Navigation : MonoBehaviour
         { 
             anim.Play("lessonsToLeaderboard");
         }
-
         currentLocation = "leaderboard";
+
+        pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
 
 
         print("toLeaderboard");
@@ -70,6 +73,16 @@ public class Navigation : MonoBehaviour
         }
         currentLocation = "lessons";
 
+        pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
+
         print("toLessons");
-    }    
+    }
+
+    public void toStore() { 
+        print("toStore");
+    }
+    public void toProfile()
+    {
+        print("toProfile");
+    }
 }
