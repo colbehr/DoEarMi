@@ -10,13 +10,16 @@ using UnityEngine;
 public class Navigation : MonoBehaviour
 {
     public GameObject buttonHighlight;
+    public GameObject practiceScreen;
     public GameObject pageTitleText;
-    private Animation anim;
+    private Animation buttonHighlightAnim;
+    private Animation practiceScreenAnim;
     private string currentLocation;
     // Start is called before the first frame update
     void Start()
     {
-        anim = buttonHighlight.GetComponent<Animation>();
+        buttonHighlightAnim = buttonHighlight.GetComponent<Animation>();
+        practiceScreenAnim = practiceScreen.GetComponent<Animation>();
         currentLocation = "practice";
     }
 
@@ -30,11 +33,11 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "lessons")
         {
-            anim.Play("lessonsToPractice");
+            buttonHighlightAnim.Play("lessonsToPractice");
         }
         else if (currentLocation == "leaderboard")
         {
-            anim.Play("leaderboardToPractice");
+            buttonHighlightAnim.Play("leaderboardToPractice");
         }
         currentLocation = "practice";
         pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
@@ -46,11 +49,11 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "practice")
         {
-            anim.Play("practiceToLeaderboard");
+            buttonHighlightAnim.Play("practiceToLeaderboard");
         }
         else if (currentLocation == "lessons")
         { 
-            anim.Play("lessonsToLeaderboard");
+            buttonHighlightAnim.Play("lessonsToLeaderboard");
         }
         currentLocation = "leaderboard";
 
@@ -65,11 +68,11 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "practice")
         {
-            anim.Play("practiceToLessons");
+            buttonHighlightAnim.Play("practiceToLessons");
         }
         else if (currentLocation == "leaderboard")
         {
-            anim.Play("leaderboardToLessons");
+            buttonHighlightAnim.Play("leaderboardToLessons");
         }
         currentLocation = "lessons";
 
@@ -84,5 +87,17 @@ public class Navigation : MonoBehaviour
     public void toProfile()
     {
         print("toProfile");
+    }
+    public void openPractice()
+    {
+        practiceScreenAnim.Play("OverlayShow");
+        print("practice button hit");
+
+    }
+    public void closePractice()
+    {
+        practiceScreenAnim.Play("OverlayHide");
+        print("close button hit");
+
     }
 }
