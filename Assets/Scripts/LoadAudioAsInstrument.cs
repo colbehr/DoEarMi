@@ -66,6 +66,8 @@ public class LoadAudioAsInstrument
             {
                 instrument.Add((AudioClip) clips[i]);
             }
+            // Sort clips by name
+            instrument.Sort((x, y) => x.name.CompareTo(y.name));
         }
 
         return instrument;

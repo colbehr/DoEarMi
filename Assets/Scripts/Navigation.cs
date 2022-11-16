@@ -12,6 +12,7 @@ public class Navigation : MonoBehaviour
     public GameObject buttonHighlight;
     public GameObject practiceScreen;
     public GameObject pageTitleText;
+    public GameObject practiceManager;
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
     private string currentLocation;
@@ -90,14 +91,15 @@ public class Navigation : MonoBehaviour
     }
     public void openPractice()
     {
+        practiceManager.SetActive(true);
         practiceScreenAnim.Play("OverlayShow");
         print("practice button hit");
 
     }
     public void closePractice()
     {
+        practiceManager.SetActive(false);
         practiceScreenAnim.Play("OverlayHide");
         print("close button hit");
-
     }
 }
