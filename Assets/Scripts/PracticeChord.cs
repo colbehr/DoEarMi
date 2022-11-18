@@ -11,7 +11,7 @@ public class PracticeChord : MonoBehaviour
     private List<AudioClip> instrument;
 
     private User user; // TODO: get user
-    private int numberOfQuestions;
+    public int numberOfQuestions = 5;
     private int questionNumber;
     private int score;
     // True if user failed current question
@@ -58,7 +58,6 @@ public class PracticeChord : MonoBehaviour
         progress = 0;
         progressBar.value = 0;
         questionNumber = 1;
-        numberOfQuestions = 5;
         progressBar.transform.Find("PercentCompleteText").GetComponent<TMPro.TMP_Text>().SetText(0 + "% Complete");
         generateQuestion(0.5F);
     }
@@ -94,14 +93,14 @@ public class PracticeChord : MonoBehaviour
         }
 
         currentQuestion = new Question();
-        currentQuestion.root = (int) Random.Range(0, 0);       // TODO: Change bounds based on instrument range
+        currentQuestion.root = (int) Random.Range(0, 1);       // TODO: Change bounds based on instrument range
         currentQuestion.chordType = (int) Random.Range(1, 5);
         playChord();
     }
 
     // Play chord based on current Question
     public void playChord() {
-        switch(currentQuestion.chordType) {
+        switch (currentQuestion.chordType) {
         case 1:
             soundPlayer.PlayOneShot(instrument[currentQuestion.root], 1);
             soundPlayer.PlayOneShot(instrument[currentQuestion.root + 4], 1);
