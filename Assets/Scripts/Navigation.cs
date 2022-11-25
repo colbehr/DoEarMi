@@ -11,16 +11,22 @@ public class Navigation : MonoBehaviour
 {
     public GameObject buttonHighlight;
     public GameObject practiceScreen;
+    public GameObject profileScreen;
+    public GameObject storeScreen;
     public GameObject pageTitleText;
     public GameObject practiceManager;
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
+    private Animation storeScreenAnim;
+    private Animation profileScreenAnim;
     private string currentLocation;
     // Start is called before the first frame update
     void Start()
     {
         buttonHighlightAnim = buttonHighlight.GetComponent<Animation>();
         practiceScreenAnim = practiceScreen.GetComponent<Animation>();
+        profileScreenAnim = profileScreen.GetComponent<Animation>();
+        storeScreenAnim = storeScreen.GetComponent<Animation>();
         currentLocation = "practice";
     }
 
@@ -82,13 +88,30 @@ public class Navigation : MonoBehaviour
         print("toLessons");
     }
 
-    public void toStore() { 
-        print("toStore");
-    }
-    public void toProfile()
+
+    public void openStore()
     {
-        print("toProfile");
+        storeScreenAnim.Play("OverlayShow");
+        print("openStore");
     }
+
+    public void closeStore()
+    {
+        storeScreenAnim.Play("OverlayHide");
+        print("closeStore");
+    }
+    public void openProfile()
+    {
+        profileScreenAnim.Play("OverlayShow");
+        print("openProfile");
+    }
+
+    public void closeProfile()
+    {
+        profileScreenAnim.Play("OverlayHide");
+        print("closeProfile");
+    }
+
     public void openPractice()
     {
         practiceManager.SetActive(true);
