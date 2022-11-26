@@ -13,13 +13,16 @@ public class Navigation : MonoBehaviour
     public GameObject practiceScreen;
     public GameObject profileScreen;
     public GameObject storeScreen;
+    public GameObject mainScreens;
     public GameObject pageTitleText;
     public GameObject practiceManager;
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
+    private Animation mainScreensAnim;
     private Animation storeScreenAnim;
     private Animation profileScreenAnim;
     private string currentLocation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,7 @@ public class Navigation : MonoBehaviour
         practiceScreenAnim = practiceScreen.GetComponent<Animation>();
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
+        mainScreensAnim = mainScreens.GetComponent<Animation>();
         currentLocation = "practice";
     }
 
@@ -41,10 +45,12 @@ public class Navigation : MonoBehaviour
         if (currentLocation == "lessons")
         {
             buttonHighlightAnim.Play("lessonsToPractice");
+            mainScreensAnim.Play("screenLessonsToPractice");
         }
         else if (currentLocation == "leaderboard")
         {
             buttonHighlightAnim.Play("leaderboardToPractice");
+            mainScreensAnim.Play("screenLeaderboardToPractice");
         }
         currentLocation = "practice";
         pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
@@ -57,10 +63,12 @@ public class Navigation : MonoBehaviour
         if (currentLocation == "practice")
         {
             buttonHighlightAnim.Play("practiceToLeaderboard");
+            mainScreensAnim.Play("screenPracticeToLeaderboard");
         }
         else if (currentLocation == "lessons")
         { 
             buttonHighlightAnim.Play("lessonsToLeaderboard");
+            mainScreensAnim.Play("screenLessonsToLeaderboard");
         }
         currentLocation = "leaderboard";
 
@@ -76,10 +84,12 @@ public class Navigation : MonoBehaviour
         if (currentLocation == "practice")
         {
             buttonHighlightAnim.Play("practiceToLessons");
+            mainScreensAnim.Play("screenPracticeToLessons");
         }
         else if (currentLocation == "leaderboard")
         {
             buttonHighlightAnim.Play("leaderboardToLessons");
+            mainScreensAnim.Play("screenLeaderboardToLessons");
         }
         currentLocation = "lessons";
 
