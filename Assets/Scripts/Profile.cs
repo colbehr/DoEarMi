@@ -8,7 +8,7 @@ public class Profile : MonoBehaviour
     public User user;
 
     [SerializeField]
-    public Text username;
+    //public Text username;
     // public Text xp;
     // public Text streak;
     // public Text credits;
@@ -20,7 +20,7 @@ public class Profile : MonoBehaviour
         // testing purposes... TODO: get proper user
         this.user = new User("Rollo", "y'all_should_play_hollow_knight", "rollo@gmail.com");
 
-        username.text = this.user.get_username();
+        //username.text = this.user.get_username();
         
         // TODO: set rest of text fields
     }

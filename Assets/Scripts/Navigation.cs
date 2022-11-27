@@ -10,13 +10,27 @@ using UnityEngine;
 public class Navigation : MonoBehaviour
 {
     public GameObject buttonHighlight;
+    public GameObject practiceScreen;
+    public GameObject profileScreen;
+    public GameObject storeScreen;
+    public GameObject mainScreens;
     public GameObject pageTitleText;
-    private Animation anim;
+    public GameObject practiceManager;
+    private Animation buttonHighlightAnim;
+    private Animation practiceScreenAnim;
+    private Animation mainScreensAnim;
+    private Animation storeScreenAnim;
+    private Animation profileScreenAnim;
     private string currentLocation;
+
     // Start is called before the first frame update
     void Start()
     {
-        anim = buttonHighlight.GetComponent<Animation>();
+        buttonHighlightAnim = buttonHighlight.GetComponent<Animation>();
+        practiceScreenAnim = practiceScreen.GetComponent<Animation>();
+        profileScreenAnim = profileScreen.GetComponent<Animation>();
+        storeScreenAnim = storeScreen.GetComponent<Animation>();
+        mainScreensAnim = mainScreens.GetComponent<Animation>();
         currentLocation = "practice";
     }
 
@@ -30,11 +44,13 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "lessons")
         {
-            anim.Play("lessonsToPractice");
+            buttonHighlightAnim.Play("lessonsToPractice");
+            mainScreensAnim.Play("screenLessonsToPractice");
         }
         else if (currentLocation == "leaderboard")
         {
-            anim.Play("leaderboardToPractice");
+            buttonHighlightAnim.Play("leaderboardToPractice");
+            mainScreensAnim.Play("screenLeaderboardToPractice");
         }
         currentLocation = "practice";
         pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
@@ -46,11 +62,13 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "practice")
         {
-            anim.Play("practiceToLeaderboard");
+            buttonHighlightAnim.Play("practiceToLeaderboard");
+            mainScreensAnim.Play("screenPracticeToLeaderboard");
         }
         else if (currentLocation == "lessons")
         { 
-            anim.Play("lessonsToLeaderboard");
+            buttonHighlightAnim.Play("lessonsToLeaderboard");
+            mainScreensAnim.Play("screenLessonsToLeaderboard");
         }
         currentLocation = "leaderboard";
 
@@ -65,11 +83,13 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "practice")
         {
-            anim.Play("practiceToLessons");
+            buttonHighlightAnim.Play("practiceToLessons");
+            mainScreensAnim.Play("screenPracticeToLessons");
         }
         else if (currentLocation == "leaderboard")
         {
-            anim.Play("leaderboardToLessons");
+            buttonHighlightAnim.Play("leaderboardToLessons");
+            mainScreensAnim.Play("screenLeaderboardToLessons");
         }
         currentLocation = "lessons";
 
@@ -78,11 +98,41 @@ public class Navigation : MonoBehaviour
         print("toLessons");
     }
 
-    public void toStore() { 
-        print("toStore");
-    }
-    public void toProfile()
+
+    public void openStore()
     {
-        print("toProfile");
+        storeScreenAnim.Play("OverlayShow");
+        print("openStore");
+    }
+
+    public void closeStore()
+    {
+        storeScreenAnim.Play("OverlayHide");
+        print("closeStore");
+    }
+    public void openProfile()
+    {
+        profileScreenAnim.Play("OverlayShow");
+        print("openProfile");
+    }
+
+    public void closeProfile()
+    {
+        profileScreenAnim.Play("OverlayHide");
+        print("closeProfile");
+    }
+
+    public void openPractice()
+    {
+        practiceManager.SetActive(true);
+        practiceScreenAnim.Play("OverlayShow");
+        print("practice button hit");
+
+    }
+    public void closePractice()
+    {
+        practiceManager.SetActive(false);
+        practiceScreenAnim.Play("OverlayHide");
+        print("close button hit");
     }
 }
