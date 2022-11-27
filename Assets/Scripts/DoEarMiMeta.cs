@@ -22,6 +22,8 @@ public sealed class DoEarMiMeta
     
     // Default instrument for all users
     private static string default_instrument = "EPianoI";
+    // Default icon for all users
+    private static string default_icon = "ProfileIcons/defaultIconTest";
 
     // Instance is null initializer
     private DoEarMiMeta()
@@ -52,6 +54,11 @@ public sealed class DoEarMiMeta
     public string get_default_instrument()
     {
         return default_instrument;
+    }
+
+    public string get_default_icon()
+    {
+        return default_icon;
     }
 
 
@@ -99,6 +106,9 @@ public sealed class DoEarMiMeta
 
     public List<User> load_all_users()
     {
+        // clears list of users before re-loading them
+        this.users = new List<User>();
+
         foreach (string file in System.IO.Directory.GetFiles(filepath)) 
         {
             if (!file.EndsWith(".meta"))
@@ -106,10 +116,11 @@ public sealed class DoEarMiMeta
                 string s = System.IO.File.ReadAllText(file);
                 User user = JsonUtility.FromJson<User>(s);
                 this.users.Add(user);
-                Debug.Log(user.get_username() + " " + user.get_xp());
+                // Debug.Log(user.get_username() + " " + user.get_xp());
             }
         }
 
         return this.users;
     }
+
 }

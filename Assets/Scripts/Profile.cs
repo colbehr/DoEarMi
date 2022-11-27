@@ -12,6 +12,7 @@ public class Profile : MonoBehaviour
     public TMPro.TMP_Text xpText;
     public TMPro.TMP_Text streakText;
     public TMPro.TMP_Text emailText;
+    public Image icon;
 
     // Backend fields
     private DoEarMiMeta meta;
@@ -28,6 +29,9 @@ public class Profile : MonoBehaviour
         // basic user info
         usernameText.GetComponent<TMPro.TMP_Text>().SetText(user.get_username().ToString());
         emailText.GetComponent<TMPro.TMP_Text>().SetText(user.get_email().ToString());
+        // TODO: for testing, get profile icon name from meta... should be getting it from user.
+        Sprite sprite = Resources.Load<Sprite>(meta.get_default_icon());
+        icon.GetComponent<Image>().sprite = sprite;
 
         // stats
         creditText.GetComponent<TMPro.TMP_Text>().SetText(user.get_credits().ToString());

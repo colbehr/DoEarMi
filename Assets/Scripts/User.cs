@@ -20,11 +20,12 @@ public class User
     private bool streak_frozen;
 
     // COLLECTIONS
-    // private List<string> icon_filenames; // TODO: not sure if this is how it should be stored? Sprite[] maybe?
-    // Instruments stored as list of string instrument names, load audio clips via LoadAudioAsInstrument with name
+    // Instruments and icons stored as list of string instrument names and filenames respectively, 
+    // load audio clips via LoadAudioAsInstrument with name
     [SerializeField]
-    private List<string> instruments, active_instruments;
-    // private List<InstrumentPathWrapper> instruments, active_instruments; 
+    private List<string> instruments, active_instruments, icons;
+    [SerializeField]
+    private string active_icon; 
 
     // private List<Boost> boosts;
 
@@ -47,7 +48,10 @@ public class User
         this.credits = 100;        // TODO: free money to start, enough to maybe buy a simple icon ?
         this.streak_frozen = false;
 
-        // this.icon_filenames.Add(default_icon.png) // TODO: not sure if this is how it should be stored? Sprite maybe?
+        // Add default icon to user collection
+        this.icons = new List<string>();
+        this.active_icon = meta.get_default_icon();
+        this.icons.Add(active_icon);
         
         // Add default instrument to user collection
         this.instruments = new List<string>();
@@ -69,30 +73,22 @@ public class User
         return Guid.NewGuid().ToString();
     }
 
-    public string get_uID()
-    {
-        return this.uID;
-    }
-
-    public int get_xp()
-    {
-        return this.xp;
-    }
-
     public string user_to_json()
     {
         // for prototype this is fine, but long-term could cause loading errors for old user types is new User class isn't created
         return JsonUtility.ToJson(this);
     }
 
+
+    public string get_username()
+    {
+        return this.username;
+    }
+
     public void update_username(string name)
     {
         // TODO: check name against dictionary of banned words
         this.username = name;
-    }
-    public string get_username()
-    {
-        return this.username;
     }
 
 
@@ -101,23 +97,34 @@ public class User
         this.password = password;  // TODO: plaintext password oof
     }
 
-    public void update_email(string email)
-    {
-        // TODO: check if valid email address
-        this.email = email;
-    }
 
     public string get_email()
     {
         return this.email;
     }
 
+    public void update_email(string email)
+    {
+        // TODO: check if valid email address
+        this.email = email;
+    }
+
+
     // TODO: must only be called after checking streak status ?
-    private void update_active()
+    private void update_last_active()
     {
         this.last_active = DateTime.Now;
     }
 
+   public string get_uID()
+    {
+        return this.uID;
+    }
+
+    public int get_streak()
+    {
+        return this.streak;
+    }
 
     // TODO: how often should this be called? where should it be called from ?
     public void update_streak()
@@ -126,14 +133,8 @@ public class User
         // check if streak is frozen
         //      check last_active against DateTime.Now
         //      update streak if necessary
-        //      this.update_active() ?
+        //      this.update_last_active() ?
     }
-
-    public int get_streak()
-    {
-        return this.streak;
-    }
-
 
     // TODO: how and when to check time limit before unfreeze streak ?
     public void freeze_streak()
@@ -148,6 +149,11 @@ public class User
     }
 
 
+    public int get_xp()
+    {
+        return this.xp;
+    }
+
     public void update_xp(int xp_base_increase)
     {
         // TODO: include boosts in formula
@@ -155,14 +161,14 @@ public class User
     }
 
 
-    public void update_credits(int credit_increase)
-    {
-        this.credits += credit_increase;
-    }
-
     public int get_credits()
     {
         return this.credits;
+    }
+
+    public void update_credits(int credit_increase)
+    {
+        this.credits += credit_increase;
     }
 
 
