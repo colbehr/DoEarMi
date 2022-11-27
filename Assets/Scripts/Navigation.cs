@@ -12,12 +12,14 @@ public class Navigation : MonoBehaviour
     public GameObject buttonHighlight;
     public GameObject practiceScreen;
     public GameObject profileScreen;
+    public GameObject chordsLessonScreen;
     public GameObject storeScreen;
     public GameObject mainScreens;
     public GameObject pageTitleText;
     public GameObject practiceManager;
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
+    private Animation chordsLessonScreenAnim;
     private Animation mainScreensAnim;
     private Animation storeScreenAnim;
     private Animation profileScreenAnim;
@@ -28,6 +30,7 @@ public class Navigation : MonoBehaviour
     {
         buttonHighlightAnim = buttonHighlight.GetComponent<Animation>();
         practiceScreenAnim = practiceScreen.GetComponent<Animation>();
+        chordsLessonScreenAnim = chordsLessonScreen.GetComponent<Animation>();
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
         mainScreensAnim = mainScreens.GetComponent<Animation>();
@@ -134,5 +137,16 @@ public class Navigation : MonoBehaviour
         practiceManager.SetActive(false);
         practiceScreenAnim.Play("OverlayHide");
         print("close button hit");
+    }
+
+    public void openLesson()
+    {
+        chordsLessonScreenAnim.Play("OverlayShow");
+        print("chords button hit");
+    }
+    public void closeLesson()
+    {
+        chordsLessonScreenAnim.Play("OverlayHide");
+        print("chords button hit");
     }
 }

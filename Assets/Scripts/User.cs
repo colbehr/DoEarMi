@@ -129,11 +129,14 @@ public class User
     // TODO: how often should this be called? where should it be called from ?
     public void update_streak()
     {
-        // TODO: 
-        // check if streak is frozen
-        //      check last_active against DateTime.Now
-        //      update streak if necessary
-        //      this.update_last_active() ?
+        if (!this.streak_frozen)
+        {
+            // TODO
+            //      check last_active against DateTime.Now
+            //      update streak if necessary
+            //      this.update_last_active() ?
+        }
+
     }
 
     // TODO: how and when to check time limit before unfreeze streak ?

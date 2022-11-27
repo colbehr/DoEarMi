@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Profile : MonoBehaviour
 {
-    // Profile components
+    // UI Components
     public TMPro.TMP_Text creditText;
     public TMPro.TMP_Text usernameText;
     public TMPro.TMP_Text xpText;
@@ -14,7 +14,7 @@ public class Profile : MonoBehaviour
     public TMPro.TMP_Text emailText;
     public Image icon;
 
-    // Backend fields
+    // Backend Fields
     private DoEarMiMeta meta;
     public User user;
 
