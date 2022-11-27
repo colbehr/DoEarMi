@@ -69,9 +69,18 @@ public sealed class DoEarMiMeta
         save_user_data(user);
     }
 
-
     // TODO: Add function to generate synthetic user data for prototype
-    // public void synthetic_user_data() {}
+    // if we call this from this class, we overflow because user also needs this class
+    public void synthetic_user_data()
+    {
+        string[] randomUsername = new string[] { "ShrimpAce",  "HackSource", "ArmDomino", "PonyChain", "BrownHip", "FreakyUnity", "CottonTrash", "SoftPro", "BravoMouth", "LooHammer", "RedWalnut", "MewRapture", "AbyssBalloon", "MountCloud", "ToeBeetle", "TradeBling", "StrifeLab", "ReinNet", "DittoFate", "FlatRugby", "SublimeMisfit", "PuddingValley", "JungleRealm", "UnholyCastle", "HonMisfit", "HoodieSalter", "PastKitten", "SkunkFrenzy", "GabSucker", "StereoSoldier", "LedRude", "BrownBale", "ExpatCatcher", "RabbiBrigade", "ArtsyCaptain", "GladNurse", "RiseAgency", "LimeTango", "SoapCob", "CafeBond", "WoollySquad", "MissionTest", "RabbitBomb", "BranchNorm", "HideMagnum", "CandidSparrow", "WeepingWake", "HydroDelight", "GumCity", "OfficerSprite", "ElegantHill", "KiloJoke", "PawBloom", "BanterWonder", "BiggerBeam", "MacroPanda", "PsychPile", "PuckPeanut",  "GentleBull", "TruckFort", "RoteActive", "FizzyFable", "ByteDrink", "CheesyTaker", "SadRobe", "PonchoRand", "ChicLog", "MoodySlave", "CraftNone", "RiverRabbit", "TalonSwitch", "AbyssalChoice", "GentlePilgrim", "LoopHop", "HonestAge", "ShadyParson", "SealLawyer", "PlanPharaoh", "SlimRoyalty", "CorpusGrunt", "LoudDraw", "RagBeater", "WifeAlchemy", "TechieNexus", "MonsterMilk", "LiftedWaste", "DubiousCoffee", "AverageJanitor", "GossipGirl", "BisonArmour", "DynastyFame", "PugVenture", "ViciousWasabi", "DayBread", "BrazenSwift", "SketchyBeast", "FeelingWord", "PaperMachine", "BrassHorse", "DruidTycoon", "PlagueGarage", "QueerWorker", "BoneBurrito", "GloomyVet", "CreepEngine", "MonkeyTrooper", "CorruptJag", "OrganicEnigma", "BloggerDrop", "SaintDelight", "FactNose", "GamingRadar", "SackColon", "SharpCrew", "HarshBoxer", "EnigmaPerk", "FlowerJinx" };
+        int rnd = Random.Range(0, randomUsername.Length);
+        Debug.Log(randomUsername[rnd]);
+
+        User user = new User((string)randomUsername[rnd], "password1", (string)randomUsername[rnd] + "@email.com");
+        user.update_xp(Random.Range(0, 1200));
+        save_user_data(user);
+    }
 
 
     // TODO: how often/where should this be called? Do we need an observer class?

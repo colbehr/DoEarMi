@@ -74,6 +74,11 @@ public class User
         return this.uID;
     }
 
+    public int get_xp()
+    {
+        return this.xp;
+    }
+
     public string user_to_json()
     {
         // for prototype this is fine, but long-term could cause loading errors for old user types is new User class isn't created
