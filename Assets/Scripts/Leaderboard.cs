@@ -8,7 +8,7 @@ public class Leaderboard : MonoBehaviour
 
     public GameObject leaderboardPositions;
     public GameObject userPosPrefab;
-    string path = "./Assets/Users/";
+    // string path = "./Assets/Users/";   // Moved loading user logic to DoEarMiMeta.cs, path not necessary here
     private Vector3 offset;
     private Quaternion rotation;
     List<User> users = new List<User>();
@@ -17,15 +17,8 @@ public class Leaderboard : MonoBehaviour
     {
         offset = Vector3.zero;
         rotation = Quaternion.Euler(0, 0, 0);
-        foreach (string file in System.IO.Directory.GetFiles(path)) {
-            if (!file.EndsWith(".meta")) {
-                string s = System.IO.File.ReadAllText(file);
-                User employeesInJson = JsonUtility.FromJson<User>(s);
-                users.Add(employeesInJson);
-                Debug.Log(employeesInJson.get_username() + " " + employeesInJson.get_xp());
-                
-            }
-        }
+        
+        users = DoEarMiMeta.Instance().load_all_users();
 
         users.Sort((p1, p2) => p2.get_xp().CompareTo(p1.get_xp()));
         int rank = 1;
