@@ -14,19 +14,20 @@ public class LessonChords : MonoBehaviour
     public Button nextButton;
     public Button prevButton;
 
-    private Progress progress;
+    private float progress;
+    private float fillSpeed = 0.15f;
     private int curr_page;
     
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        this.progress = new Progress(page_count);
+        this.progress = 0.0f;
         this.curr_page = 0;
 
         nextButton.onClick.AddListener(() => next_page());
 
         prevButton.onClick.AddListener(() => prev_page());
-        // prevButton.gameObject.SetActive(false);
+        prevButton.gameObject.SetActive(false);
     }
 
 
