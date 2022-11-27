@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using UnityEngine;
 
@@ -82,7 +83,6 @@ public sealed class DoEarMiMeta
         save_user_data(user);
     }
 
-
     // TODO: how often/where should this be called? Do we need an observer class?
     public void save_user_data(User user)
     {
@@ -95,5 +95,21 @@ public sealed class DoEarMiMeta
             // write user json to file, overwrites any existing content
             File.WriteAllText(path, user_json);
         }
+    }
+
+    public List<User> load_all_users()
+    {
+        foreach (string file in System.IO.Directory.GetFiles(filepath)) 
+        {
+            if (!file.EndsWith(".meta"))
+            {
+                string s = System.IO.File.ReadAllText(file);
+                User user = JsonUtility.FromJson<User>(s);
+                this.users.Add(user);
+                Debug.Log(user.get_username() + " " + user.get_xp());
+            }
+        }
+
+        return this.users;
     }
 }

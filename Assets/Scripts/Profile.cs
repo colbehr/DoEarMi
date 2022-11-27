@@ -1,29 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Profile : MonoBehaviour
 {
+    // Profile components
+    public TMPro.TMP_Text creditText;
+    public TMPro.TMP_Text usernameText;
+    public TMPro.TMP_Text xpText;
+    public TMPro.TMP_Text streakText;
+    public TMPro.TMP_Text emailText;
+
+    // Backend fields
+    private DoEarMiMeta meta;
     public User user;
-
-    [SerializeField]
-    //public Text username;
-    // public Text xp;
-    // public Text streak;
-    // public Text credits;
-
-    // TODO: icons, instruments, email, etc.
 
     void Start()
     {
-        // testing purposes... TODO: get proper user
-        this.user = new User("Rollo", "y'all_should_play_hollow_knight", "rollo@gmail.com");
+        this.meta = DoEarMiMeta.Instance();
 
-        //username.text = this.user.get_username();
-        
-        // TODO: set rest of text fields
+        // TODO: testing only!! gets first user from all users list, need sign in implemented to get proper user
+        this.user = meta.load_all_users().ElementAt(0);
+
+        // Set text fields unique to user
+        // basic user info
+        usernameText.GetComponent<TMPro.TMP_Text>().SetText(user.get_username().ToString());
+        emailText.GetComponent<TMPro.TMP_Text>().SetText(user.get_email().ToString());
+
+        // stats
+        creditText.GetComponent<TMPro.TMP_Text>().SetText(user.get_credits().ToString());
+        xpText.GetComponent<TMPro.TMP_Text>().SetText("XP " + user.get_xp().ToString());
+        streakText.GetComponent<TMPro.TMP_Text>().SetText("STREAK " + user.get_streak().ToString());
+
     }
+
+    // void Update()
+    // {
+    //     // testing purposes... TODO: get proper user
+    //     this.user = this.meta.get_user();
+
+    //     //username.text = this.user.get_username();
+        
+    //     // TODO: set rest of text fields
+    //     creditText.GetComponent<TMPro.TMP_Text>().SetText(user.get_credits().ToString());
+    // }
 
 
     // TODO: implement on click functions to call user.update_active_instruments and such

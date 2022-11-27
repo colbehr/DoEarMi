@@ -107,6 +107,10 @@ public class User
         this.email = email;
     }
 
+    public string get_email()
+    {
+        return this.email;
+    }
 
     // TODO: must only be called after checking streak status ?
     private void update_active()
@@ -123,6 +127,11 @@ public class User
         //      check last_active against DateTime.Now
         //      update streak if necessary
         //      this.update_active() ?
+    }
+
+    public int get_streak()
+    {
+        return this.streak;
     }
 
 
@@ -149,6 +158,11 @@ public class User
     public void update_credits(int credit_increase)
     {
         this.credits += credit_increase;
+    }
+
+    public int get_credits()
+    {
+        return this.credits;
     }
 
 
