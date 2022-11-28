@@ -17,6 +17,8 @@ public class Navigation : MonoBehaviour
     public GameObject mainScreens;
     public GameObject pageTitleText;
     public GameObject practiceManager;
+    public GameObject lessonsManager;
+
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
     private Animation chordsLessonScreenAnim;
@@ -141,11 +143,13 @@ public class Navigation : MonoBehaviour
 
     public void openLesson()
     {
+        lessonsManager.SetActive(true);
         chordsLessonScreenAnim.Play("OverlayShow");
         print("chords button hit");
     }
     public void closeLesson()
     {
+        lessonsManager.SetActive(false);
         chordsLessonScreenAnim.Play("OverlayHide");
         print("chords button hit");
     }
