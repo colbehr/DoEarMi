@@ -7,12 +7,21 @@ using UnityEngine.EventSystems;
 
 public class LessonChords : MonoBehaviour
 {
-    private static int page_count = 2;
+    private static int page_count = 5;
 
     // UI Components
+    // Unmoving
     public Slider progressBar;
     public Button nextButton;
     public Button prevButton;
+    // Pages
+    public GameObject page1;
+    public GameObject page2;
+    public GameObject page3;
+    public GameObject page4;
+    public GameObject page5;
+    public GameObject page6;
+
 
     private float progress;
     private float fillSpeed = 0.15f;
@@ -28,6 +37,14 @@ public class LessonChords : MonoBehaviour
 
         prevButton.onClick.AddListener(() => prev_page());
         prevButton.gameObject.SetActive(false);
+
+        // Make only first page visible TODO: Add animation support making this obsolete
+        this.page1.SetActive(true);
+        this.page2.SetActive(false);
+        this.page3.SetActive(false);
+        this.page4.SetActive(false);
+        this.page5.SetActive(false);
+        this.page6.SetActive(false);
     }
 
 
