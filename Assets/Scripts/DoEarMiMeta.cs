@@ -123,4 +123,8 @@ public sealed class DoEarMiMeta
         return this.users;
     }
 
+    public List<User> get_users()
+    {
+        return this.users;
+    }
 }

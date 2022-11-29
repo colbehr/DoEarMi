@@ -16,7 +16,10 @@ public class Navigation : MonoBehaviour
     public GameObject storeScreen;
     public GameObject mainScreens;
     public GameObject pageTitleText;
-    public GameObject practiceManager;
+    public GameObject practiceManager_Chords;
+    public GameObject practiceManager_ScaleDegrees;
+    public GameObject practiceManager_Intervals;
+    public GameObject practiceManager_MelodicDictation;
     public GameObject lessonsManager;
 
     private Animation buttonHighlightAnim;
@@ -127,20 +130,6 @@ public class Navigation : MonoBehaviour
         print("closeProfile");
     }
 
-    public void openPractice()
-    {
-        practiceManager.SetActive(true);
-        practiceScreenAnim.Play("OverlayShow");
-        print("practice button hit");
-
-    }
-    public void closePractice()
-    {
-        practiceManager.SetActive(false);
-        practiceScreenAnim.Play("OverlayHide");
-        print("close button hit");
-    }
-
     public void openLesson()
     {
         lessonsManager.SetActive(true);
@@ -152,5 +141,47 @@ public class Navigation : MonoBehaviour
         lessonsManager.SetActive(false);
         chordsLessonScreenAnim.Play("OverlayHide");
         print("chords button hit");
+    }
+
+    // Practice Navigation
+    public void openPractice_Chords()
+    {
+        practiceManager_Chords.SetActive(true);
+        practiceScreenAnim.Play("OverlayShow");
+        print("chord practice button hit");
+
+    }
+    public void openPractice_Intervals()
+    {
+        practiceManager_Intervals.SetActive(true);
+        practiceScreenAnim.Play("OverlayShow");
+        print("Intervals practice button hit");
+    }
+    public void openPractice_ScaleDegrees()
+    {
+        practiceManager_ScaleDegrees.SetActive(true);
+        practiceScreenAnim.Play("OverlayShow");
+        print("ScaleDegrees practice button hit");
+
+    }
+    public void openPractice_MelodicDictation()
+    {
+        practiceManager_MelodicDictation.SetActive(true);
+        practiceScreenAnim.Play("OverlayShow");
+        print("MelodicDictation practice button hit");
+    }
+    public void closePractice()
+    {
+        if (practiceManager_Chords.activeSelf)
+            practiceManager_Chords.SetActive(false);
+        else if (practiceManager_ScaleDegrees.activeSelf)
+            practiceManager_ScaleDegrees.SetActive(false);
+        else if (practiceManager_Intervals.activeSelf)
+            practiceManager_Intervals.SetActive(false);
+        else if (practiceManager_MelodicDictation.activeSelf)
+            practiceManager_MelodicDictation.SetActive(false);
+
+        practiceScreenAnim.Play("OverlayHide");
+        print("close button hit");
     }
 }
