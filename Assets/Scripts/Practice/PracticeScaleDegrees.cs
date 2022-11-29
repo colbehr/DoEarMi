@@ -41,7 +41,7 @@ public class PracticeScaleDegrees : Practice
         currentQuestion = new Question();
         currentQuestion.key = (int) Random.Range(0, 0);       // TODO: Change bounds based on instrument range
         // Set random Major scale degree
-        switch (Random.Range(1, 7)) {
+        switch (Random.Range(1, 8)) {
         case 1:
             currentQuestion.degree = 0; // Do
             break; 

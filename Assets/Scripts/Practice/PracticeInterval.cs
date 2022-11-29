@@ -41,7 +41,7 @@ public class PracticeInterval : Practice
 
         currentQuestion = new Question();
         currentQuestion.root = (int) Random.Range(0, 0);       // TODO: Change bounds based on instrument range
-        currentQuestion.interval = (int) Random.Range(1,7);
+        currentQuestion.interval = (int) Random.Range(1,8);
         playButton.enabled = true;
         playQuestion();
     }

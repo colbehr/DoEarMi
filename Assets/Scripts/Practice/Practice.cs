@@ -72,6 +72,7 @@ public abstract class Practice : MonoBehaviour
         {
             button.SetActive(false);
         }
+        playButton.onClick.RemoveListener(playQuestion);
     }
 
     // Update is called once per frame
