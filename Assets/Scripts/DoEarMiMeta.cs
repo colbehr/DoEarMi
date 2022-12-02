@@ -22,7 +22,7 @@ public sealed class DoEarMiMeta
     private static string filepath = "./Assets/Users/";
     
     // Default instrument for all users
-    private static string default_instrument = "EPianoI";
+    private static string default_instrument = "GuitarI";
     // Default icon for all users
     private static string default_icon = "ProfileIcons/defaultIconTest";
 

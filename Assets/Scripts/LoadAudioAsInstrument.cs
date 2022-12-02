@@ -40,8 +40,9 @@ public class LoadAudioAsInstrument
     private Dictionary<string, string> All_Instruments = new Dictionary<string, string>
     {
         { "EPianoI", "EPianoI/" },
+        { "EPianoII", "EPianoII/" },
         { "BassI", "BassI/" },
-        { "SynthI", "SynthI/" }
+        { "GuitarI", "GuitarI/" }
     };
 
 
