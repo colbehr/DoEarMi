@@ -24,7 +24,6 @@ public class LessonChords : MonoBehaviour
     public GameObject page6;
     //Animations
     public Animation nextPage;
-    public Transform transform;
 
 
     private float progress;
@@ -65,7 +64,6 @@ public class LessonChords : MonoBehaviour
         prevButton.onClick.AddListener(() => prev_page());
         prevButton.gameObject.SetActive(false);
         nextPage = pages.GetComponent<Animation>();
-        transform = pages.GetComponent<Transform>();
 
         progressBar.value = 0;
         update_progress_text();

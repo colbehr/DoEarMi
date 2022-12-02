@@ -13,6 +13,7 @@ public class Navigation : MonoBehaviour
     public GameObject practiceScreen;
     public GameObject profileScreen;
     public GameObject chordsLessonScreen;
+    public GameObject intervalsLessonScreen;
     public GameObject storeScreen;
     public GameObject mainScreens;
     public GameObject pageTitleText;
@@ -20,11 +21,13 @@ public class Navigation : MonoBehaviour
     public GameObject practiceManager_ScaleDegrees;
     public GameObject practiceManager_Intervals;
     public GameObject practiceManager_MelodicDictation;
-    public GameObject lessonsManager;
+    public GameObject lessonsManagerChords;
+    public GameObject lessonsManagerIntervals;
 
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
     private Animation chordsLessonScreenAnim;
+    private Animation intervalsLessonScreenAnim;
     private Animation mainScreensAnim;
     private Animation storeScreenAnim;
     private Animation profileScreenAnim;
@@ -36,6 +39,7 @@ public class Navigation : MonoBehaviour
         buttonHighlightAnim = buttonHighlight.GetComponent<Animation>();
         practiceScreenAnim = practiceScreen.GetComponent<Animation>();
         chordsLessonScreenAnim = chordsLessonScreen.GetComponent<Animation>();
+        intervalsLessonScreenAnim = intervalsLessonScreen.GetComponent<Animation>();
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
         mainScreensAnim = mainScreens.GetComponent<Animation>();
@@ -130,18 +134,33 @@ public class Navigation : MonoBehaviour
         print("closeProfile");
     }
 
-    public void openLesson()
+    // Lessons Navigation
+    public void openLessonChords()
     {
-        lessonsManager.SetActive(true);
+        lessonsManagerChords.SetActive(true);
         chordsLessonScreenAnim.Play("OverlayShow");
         print("chords button hit");
     }
-    public void closeLesson()
+    public void closeLessonChords()
     {
-        lessonsManager.SetActive(false);
+        lessonsManagerChords.SetActive(false);
         chordsLessonScreenAnim.Play("OverlayHide");
         print("chords button hit");
     }
+
+    public void openLessonIntervals()
+    {
+        lessonsManagerIntervals.SetActive(true);
+        intervalsLessonScreenAnim.Play("OverlayShow");
+        print("intervals button hit");
+    }
+    public void closeLessonIntervals()
+    {
+        lessonsManagerIntervals.SetActive(false);
+        intervalsLessonScreenAnim.Play("OverlayHide");
+        print("intervals button hit");
+    }
+
 
     // Practice Navigation
     public void openPractice_Chords()
