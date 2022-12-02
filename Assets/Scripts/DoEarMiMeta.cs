@@ -17,6 +17,7 @@ public sealed class DoEarMiMeta
 
     private List<User> users;
     private Hashtable user_files;
+    private User current_user;
 
     private static string filepath = "./Assets/Users/";
     
@@ -116,6 +117,7 @@ public sealed class DoEarMiMeta
                 string s = System.IO.File.ReadAllText(file);
                 User user = JsonUtility.FromJson<User>(s);
                 this.users.Add(user);
+                // this.user_files.Add(user.get_uID(), (string) file);
                 // Debug.Log(user.get_username() + " " + user.get_xp());
             }
         }
@@ -126,5 +128,16 @@ public sealed class DoEarMiMeta
     public List<User> get_users()
     {
         return this.users;
+    }
+
+    public User get_curr_user()
+    {
+        return this.current_user;
+    }
+
+    // Must only be called on successful sign in
+    public void set_curr_user(User user)
+    {
+        this.current_user = user;
     }
 }
