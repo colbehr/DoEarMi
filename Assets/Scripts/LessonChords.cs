@@ -28,14 +28,37 @@ public class LessonChords : MonoBehaviour
 
 
     private float progress;
-    private float fillSpeed = 0.15f;
+    private float fillSpeed = 0.3f;
     private int curr_page;
     
     // Start is called before the first frame update
     void OnEnable()
+    { 
+        reset();
+    }
+
+    void OnDisable()
+    { 
+        reset();
+    }
+
+    void Update()
+    {
+        if (progressBar.value < progress) 
+        {
+            progressBar.value += fillSpeed * Time.deltaTime; 
+        }  
+        else if (progressBar.value > progress)
+        {
+            progressBar.value -= fillSpeed * Time.deltaTime; 
+        }       
+    }
+
+    public void reset()
     {
         this.progress = 0.0f;
         this.curr_page = 0;
+        
 
         nextButton.onClick.AddListener(() => next_page());
 
@@ -44,6 +67,9 @@ public class LessonChords : MonoBehaviour
         nextPage = pages.GetComponent<Animation>();
         transform = pages.GetComponent<Transform>();
 
+        progressBar.value = 0;
+        update_progress_text();
+
         // Make only first page visible TODO: Add animation support making this obsolete
         this.page1.SetActive(true);
         this.page2.SetActive(false);
@@ -51,8 +77,15 @@ public class LessonChords : MonoBehaviour
         this.page4.SetActive(false);
         this.page5.SetActive(false);
         this.page6.SetActive(false);
+
+        nextButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(false);
     }
 
+    private void update_progress_text()
+    {
+        progressBar.transform.Find("PercentCompleteText").GetComponent<TMPro.TMP_Text>().SetText((int)(progress*100) + "% Complete");  
+    }
 
     public void next_page()
     {
@@ -96,6 +129,9 @@ public class LessonChords : MonoBehaviour
                 this.page6.SetActive(true);
                 break;
         }
+
+        progress += (float) 1/(page_count-1);
+        update_progress_text();  
     }
 
 
@@ -142,6 +178,9 @@ public class LessonChords : MonoBehaviour
                 Debug.Log(curr_page);
                 break;
         }
+
+        progress -= (float) 1/(page_count-1);
+        update_progress_text();
     }
 
 
