@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class LessonChords : MonoBehaviour
+public class LessonIntervals : MonoBehaviour
 {
     private static int page_count = 6;
 
@@ -15,16 +15,12 @@ public class LessonChords : MonoBehaviour
     public Button nextButton;
     public Button prevButton;
     // Pages
-    public GameObject pages;
     public GameObject page1;
     public GameObject page2;
     public GameObject page3;
     public GameObject page4;
     public GameObject page5;
     public GameObject page6;
-    //Animations
-    public Animation nextPage;
-
 
     private float progress;
     private float fillSpeed = 0.3f;
@@ -57,13 +53,11 @@ public class LessonChords : MonoBehaviour
     {
         this.progress = 0.0f;
         this.curr_page = 0;
-        
 
         nextButton.onClick.AddListener(() => next_page());
 
         prevButton.onClick.AddListener(() => prev_page());
         prevButton.gameObject.SetActive(false);
-        nextPage = pages.GetComponent<Animation>();
 
         progressBar.value = 0;
         update_progress_text();
