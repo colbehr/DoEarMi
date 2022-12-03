@@ -16,7 +16,8 @@ public sealed class DoEarMiMeta
     private static readonly object file_padlock = new object();
 
     private List<User> users;
-    private Hashtable user_files;
+    private Hashtable user_files; // key: user ID, value: json filepath
+    private Hashtable user_names; // key: username, value: User object
     private User current_user;
 
     private static string filepath = "./Assets/Users/";
@@ -29,8 +30,9 @@ public sealed class DoEarMiMeta
     // Instance is null initializer
     private DoEarMiMeta()
     {
-        users = new List<User>();
+        users = new List<User>();       // kept for now, but use user_names hashtable instead
         user_files = new Hashtable();
+        user_names = new Hashtable();
     }
 
     // Entry point for DoEarMiMeta singleton
@@ -73,6 +75,8 @@ public sealed class DoEarMiMeta
         string uID = user.get_uID();
         string user_file = "user_" + uID + ".json";
         user_files.Add(uID, user_file);
+        user_names.Add(user.get_username(), user.get_password());
+
 
         // save new user data
         save_user_data(user);
@@ -107,19 +111,27 @@ public sealed class DoEarMiMeta
 
     public List<User> load_all_users()
     {
-        // clears list of users before re-loading them
-        this.users = new List<User>();
-
-        foreach (string file in System.IO.Directory.GetFiles(filepath)) 
+        lock (file_padlock)
         {
-            if (!file.EndsWith(".meta"))
+            // clears list of users before re-loading them
+            this.users = new List<User>();
+            this.user_files = new Hashtable();
+            this.user_names = new Hashtable();
+
+            foreach (string file in System.IO.Directory.GetFiles(filepath)) 
             {
-                string s = System.IO.File.ReadAllText(file);
-                User user = JsonUtility.FromJson<User>(s);
-                this.users.Add(user);
-                // this.user_files.Add(user.get_uID(), (string) file);
-                // Debug.Log(user.get_username() + " " + user.get_xp());
+                if (!file.EndsWith(".meta"))
+                {
+                    string s = System.IO.File.ReadAllText(file);
+                    User user = JsonUtility.FromJson<User>(s);
+                    this.users.Add(user);
+
+                    this.user_files.Add(user.get_uID(), (string) file);
+                    this.user_names.Add(user.get_username().ToLower(), user); // must store usernames as lowercase for login ignore case
+                    // Debug.Log(user.get_username() + " " + user.get_xp());
+                }
             }
+
         }
 
         return this.users;
@@ -140,4 +152,19 @@ public sealed class DoEarMiMeta
     {
         this.current_user = user;
     }
+
+    public User find_user(string name)
+    {
+        load_all_users();
+
+        name = name.ToLower(); // case insensitive username search
+
+        if(user_names.ContainsKey(name))
+        {
+            return (User) user_names[name];
+        }
+
+        return null;
+    }
+
 }
