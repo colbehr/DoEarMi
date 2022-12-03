@@ -100,7 +100,14 @@ public sealed class DoEarMiMeta
     {
         string user_json = user.user_to_json();
         string uID = user.get_uID();
-        string path = filepath + user_files[uID].ToString();
+
+        // check if first time saving and needs the full path
+        string interpath = "";
+        if (!user_files[uID].ToString().Contains(filepath))
+        {
+            interpath = filepath;
+        }
+        string path = interpath + user_files[uID].ToString();
 
         lock (file_padlock)
         {

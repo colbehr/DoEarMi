@@ -6,6 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public class User
 {   
+    // Meta
+    DoEarMiMeta meta;
+
     // BASIC INFO
     [SerializeField]
     private string username, uID, password, email;
@@ -35,7 +38,7 @@ public class User
 
     public User(string username, string password, string email)
     {
-        DoEarMiMeta meta = DoEarMiMeta.Instance();
+        this.meta = DoEarMiMeta.Instance();
 
         this.username = username;
         this.uID = new_uID();
@@ -89,6 +92,7 @@ public class User
     {
         // TODO: check name against dictionary of banned words
         this.username = name;
+        update_json();
     }
 
     public string get_password() // oof
@@ -99,6 +103,7 @@ public class User
     public void update_password(string password)
     {
         this.password = password;  // TODO: plaintext password oof
+        update_json();
     }
 
 
@@ -111,13 +116,13 @@ public class User
     {
         // TODO: check if valid email address
         this.email = email;
+        update_json();
     }
 
-
-    // TODO: must only be called after checking streak status ?
-    private void update_last_active()
+    public void update_last_active()
     {
         this.last_active = DateTime.Now;
+        update_json();
     }
 
    public string get_uID()
@@ -147,11 +152,13 @@ public class User
     public void freeze_streak()
     {
         this.streak_frozen = true;
+        update_json();
         // TODO: change streak color/add snowflake icon beside it ?
     }
     public void unfreeze_streak()
     {
         this.streak_frozen = false;
+        update_json();
         // TODO: change streak color/add fire icon beside it ?
     }
 
@@ -165,6 +172,7 @@ public class User
     {
         // TODO: include boosts in formula
         this.xp += (10*this.streak + xp_base_increase);
+        update_json();
     }
 
 
@@ -176,6 +184,7 @@ public class User
     public void update_credits(int credit_increase)
     {
         this.credits += credit_increase;
+        update_json();
     }
 
 
@@ -184,11 +193,21 @@ public class User
     {
         this.instruments.Add(instrument);
         this.active_instruments.Add(instrument);
+        update_json();
     }
 
     public void remove_active(string instrument)
     {
         this.active_instruments.Remove(instrument);
+        update_json();
+    }
+
+
+    // called from all setters
+    public void update_json()
+    {
+        this.meta = DoEarMiMeta.Instance();
+        this.meta.save_user_data(this);
     }
 
     // // called from shop on purchase

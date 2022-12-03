@@ -50,6 +50,7 @@ public class LoginMenu : MonoBehaviour
             Debug.Log("found user for sign in");
 
             meta.set_curr_user(user);
+            user.update_last_active();
 
             // TODO: welcome back <user> ! popup
 
@@ -61,13 +62,18 @@ public class LoginMenu : MonoBehaviour
         else
         {
             Debug.Log("no user matching name");
+
+            // TODO: bad sign in, reprompt
         }
     }
 
 
     public void dev_skip()
     {
-        meta.set_curr_user(meta.find_user("ShrimpAce"));
+        User user = meta.find_user("ShrimpAce");
+        meta.set_curr_user(user);
+
+        Debug.Log(user.get_uID());
 
         login.SetActive(false);
         practice.SetActive(true);
