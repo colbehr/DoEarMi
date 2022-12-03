@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class LessonIntervals : MonoBehaviour
+public class LessonMeloDict : MonoBehaviour
 {
     private static int page_count = 6;
 
@@ -22,6 +22,7 @@ public class LessonIntervals : MonoBehaviour
     public GameObject page5;
     public GameObject page6;
 
+    private static readonly object reset_padlock = new object();
     private float progress;
     private float fillSpeed = 0.3f;
     private int curr_page;
@@ -51,27 +52,34 @@ public class LessonIntervals : MonoBehaviour
 
     public void reset()
     {
-        this.progress = 0.0f;
-        this.curr_page = 0;
+        lock (reset_padlock)
+        {
+            this.progress = 0.0f;
+            this.curr_page = 0;
 
-        nextButton.onClick.AddListener(() => next_page());
+            
+            nextButton.onClick.RemoveAllListeners();
+            prevButton.onClick.RemoveAllListeners();
 
-        prevButton.onClick.AddListener(() => prev_page());
-        prevButton.gameObject.SetActive(false);
+            nextButton.onClick.AddListener(() => next_page());
 
-        progressBar.value = 0;
-        update_progress_text();
+            prevButton.onClick.AddListener(() => prev_page());
+            prevButton.gameObject.SetActive(false);
 
-        // Make only first page visible TODO: Add animation support making this obsolete
-        this.page1.SetActive(true);
-        this.page2.SetActive(false);
-        this.page3.SetActive(false);
-        this.page4.SetActive(false);
-        this.page5.SetActive(false);
-        this.page6.SetActive(false);
+            progressBar.value = 0;
+            update_progress_text();
 
-        nextButton.gameObject.SetActive(true);
-        prevButton.gameObject.SetActive(false);
+            // Make only first page visible TODO: Add animation support making this obsolete
+            this.page1.SetActive(true);
+            this.page2.SetActive(false);
+            this.page3.SetActive(false);
+            this.page4.SetActive(false);
+            this.page5.SetActive(false);
+            this.page6.SetActive(false);
+
+            nextButton.gameObject.SetActive(true);
+            prevButton.gameObject.SetActive(false);
+        }
     }
 
     private void update_progress_text()

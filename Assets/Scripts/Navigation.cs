@@ -14,6 +14,7 @@ public class Navigation : MonoBehaviour
     public GameObject profileScreen;
     public GameObject chordsLessonScreen;
     public GameObject intervalsLessonScreen;
+    public GameObject meloDictLessonScreen;
     public GameObject storeScreen;
     public GameObject mainScreens;
     public GameObject pageTitleText;
@@ -23,11 +24,13 @@ public class Navigation : MonoBehaviour
     public GameObject practiceManager_MelodicDictation;
     public GameObject lessonsManagerChords;
     public GameObject lessonsManagerIntervals;
+    public GameObject lessonsManagerMeloDict;
 
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
     private Animation chordsLessonScreenAnim;
     private Animation intervalsLessonScreenAnim;
+    private Animation meloDictLessonScreenAnim;
     private Animation mainScreensAnim;
     private Animation storeScreenAnim;
     private Animation profileScreenAnim;
@@ -40,6 +43,7 @@ public class Navigation : MonoBehaviour
         practiceScreenAnim = practiceScreen.GetComponent<Animation>();
         chordsLessonScreenAnim = chordsLessonScreen.GetComponent<Animation>();
         intervalsLessonScreenAnim = intervalsLessonScreen.GetComponent<Animation>();
+        meloDictLessonScreenAnim = meloDictLessonScreen.GetComponent<Animation>();
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
         mainScreensAnim = mainScreens.GetComponent<Animation>();
@@ -158,6 +162,19 @@ public class Navigation : MonoBehaviour
     {
         lessonsManagerIntervals.SetActive(false);
         intervalsLessonScreenAnim.Play("OverlayHide");
+        print("intervals button hit");
+    }
+
+    public void openLessonMeloDict()
+    {
+        lessonsManagerMeloDict.SetActive(true);
+        meloDictLessonScreenAnim.Play("OverlayShow");
+        print("intervals button hit");
+    }
+    public void closeLessonMeloDict()
+    {
+        lessonsManagerMeloDict.SetActive(false);
+        meloDictLessonScreenAnim.Play("OverlayHide");
         print("intervals button hit");
     }
 
