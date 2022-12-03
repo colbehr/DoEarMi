@@ -24,12 +24,12 @@ public class Profile : MonoBehaviour
         this.meta = DoEarMiMeta.Instance();
 
         // TODO: testing only!! gets first user from all users list, need sign in implemented to get proper user
-        this.user = meta.load_all_users().ElementAt(0);
+        // this.user = meta.load_all_users().ElementAt(0);
 
         // Set text fields unique to user
         // basic user info
-        usernameText.GetComponent<TMPro.TMP_Text>().SetText(user.get_username().ToString());
-        emailText.GetComponent<TMPro.TMP_Text>().SetText(user.get_email().ToString());
+        // usernameText.GetComponent<TMPro.TMP_Text>().SetText(user.get_username().ToString());
+        // emailText.GetComponent<TMPro.TMP_Text>().SetText(user.get_email().ToString());
         
         // TODO: for testing, get profile icon name from meta... should be getting it from user.
         Sprite sprite = Resources.Load<Sprite>(meta.get_default_icon());
@@ -37,9 +37,9 @@ public class Profile : MonoBehaviour
         profileButtonIcon.GetComponent<Image>().sprite = sprite;
 
         // stats
-        creditText.GetComponent<TMPro.TMP_Text>().SetText(user.get_credits().ToString());
-        xpText.GetComponent<TMPro.TMP_Text>().SetText("XP " + user.get_xp().ToString());
-        streakText.GetComponent<TMPro.TMP_Text>().SetText("STREAK " + user.get_streak().ToString());
+        // creditText.GetComponent<TMPro.TMP_Text>().SetText(user.get_credits().ToString());
+        // xpText.GetComponent<TMPro.TMP_Text>().SetText("XP " + user.get_xp().ToString());
+        // streakText.GetComponent<TMPro.TMP_Text>().SetText("STREAK " + user.get_streak().ToString());
 
     }
 

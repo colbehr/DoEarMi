@@ -7,6 +7,7 @@ using TMPro;
 public class LoginMenu : MonoBehaviour
 {
     // UI Components
+    public GameObject login;
     public GameObject practice;
     public GameObject upperNav;
     public GameObject lowerNav;
@@ -30,14 +31,48 @@ public class LoginMenu : MonoBehaviour
 
     public void set_user_email()
     {
-        Debug.Log("email set");
+        // Debug.Log("email set");
         this.userEmail = email.GetComponent<TMP_InputField>().text;
-        Debug.Log(userEmail);
+        // Debug.Log(userEmail);
     }
     public void set_user_password()
     {
-        Debug.Log("password set");
+        // Debug.Log("password set");
         this.userPassword = password.GetComponent<TMP_InputField>().text;
+    }
+
+    public void sign_in()
+    {
+        User user = meta.find_user(userEmail);
+
+        if (user != null && user.get_password() == userPassword)
+        {
+            Debug.Log("found user for sign in");
+
+            meta.set_curr_user(user);
+
+            // TODO: welcome back <user> ! popup
+
+            login.SetActive(false);
+            practice.SetActive(true);
+            upperNav.SetActive(true);
+            lowerNav.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("no user matching name");
+        }
+    }
+
+
+    public void dev_skip()
+    {
+        meta.set_curr_user(meta.find_user("ShrimpAce"));
+
+        login.SetActive(false);
+        practice.SetActive(true);
+        upperNav.SetActive(true);
+        lowerNav.SetActive(true);
     }
 
     // TODO: for now, can probably simulate log in by creating a new user... 

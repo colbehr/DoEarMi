@@ -91,6 +91,10 @@ public class User
         this.username = name;
     }
 
+    public string get_password() // oof
+    {
+        return this.password;
+    }
 
     public void update_password(string password)
     {
