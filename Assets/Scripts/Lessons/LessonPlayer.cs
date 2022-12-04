@@ -4,11 +4,31 @@ using UnityEngine;
 
 public class LessonPlayer : MonoBehaviour
 {
+    private static int octave_index = 12;
+
     public AudioSource soundPlayer;
 
     private DoEarMiMeta meta;
     private LoadAudioAsInstrument instrumentLoader;
     private List<AudioClip> instrument;
+
+    private Dictionary<string, int> noteToIndex = new Dictionary<string, int>
+    {
+        { "C" , 0 },
+        { "C#", 1 },
+        { "D" , 2 },
+        { "D#", 3 },
+        { "E" , 4 },
+        { "F" , 5 },
+        { "F#", 6 },
+        { "G" , 7 },
+        { "G#", 8 },
+        { "A" , 9 },
+        { "A#", 10 },
+        { "B" , 11 }
+    };
+
+    private int[] major_scale = { 0, 2, 4, 5, 7, 9, 11, 12 }; // steps as indices from scale root 
 
     void Start()
     {
@@ -19,6 +39,51 @@ public class LessonPlayer : MonoBehaviour
         instrumentLoader = LoadAudioAsInstrument.Instance();
         instrument = instrumentLoader.get_instrument(instrumentName);
         Debug.Log(instrument.Count.ToString());
+    }
+
+    public IEnumerator play_note_by_name(string note, int octave, float wait_time)
+    {
+        yield return new WaitForSeconds(wait_time);
+        soundPlayer.PlayOneShot(instrument[noteToIndex[note] + (octave*octave_index)], 1);
+    }
+
+    IEnumerator play_note_by_index(int index, int octave, float wait_time)
+    {
+        yield return new WaitForSeconds(wait_time);
+        soundPlayer.PlayOneShot(instrument[index + (octave*octave_index)], 1);
+    }
+
+    public void play_major_scale(string rootNote, int octave, float wait_time)
+    {
+        int rootIndex = noteToIndex[rootNote];
+        for (int i=0; i < major_scale.Length; i++)
+        {
+            StartCoroutine(play_note_by_index(rootIndex + major_scale[i], octave, wait_time*i));
+        }
+    }
+
+    public List<int> get_note_indices(string[] notes)
+    {
+        List<int> indices = new List<int>();
+        
+        for(int i=0; i<notes.Length; i++)
+        {
+            indices.Add(noteToIndex[notes[i]]);
+        }
+
+        return indices;
+    }
+
+    public List<int> get_pitch_indices(string[] notes)
+    {
+        List<int> indices = new List<int>();
+        
+        for(int i=0; i<notes.Length; i++)
+        {
+            indices.Add(System.Array.IndexOf(major_scale, noteToIndex[notes[i]]));
+        }
+
+        return indices;
     }
 
     // CHORDS //

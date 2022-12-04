@@ -7,20 +7,22 @@ using UnityEngine.EventSystems;
 
 public class LessonMeloDict : MonoBehaviour
 {
-    private static int page_count = 6;
+    private static int page_count = 5;
+    private static float wait_time = 1.0f; // wait time before playing next audioclip
 
     // UI Components
     // Unmoving
     public Slider progressBar;
     public Button nextButton;
     public Button prevButton;
+    public LessonComponentManipulator uiManipulator;
+    public LessonPlayer audioPlayer;
     // Pages
     public GameObject page1;
     public GameObject page2;
     public GameObject page3;
     public GameObject page4;
     public GameObject page5;
-    public GameObject page6;
 
     private static readonly object reset_padlock = new object();
     private float progress;
@@ -29,7 +31,9 @@ public class LessonMeloDict : MonoBehaviour
     
     // Start is called before the first frame update
     void OnEnable()
-    { 
+    {
+        uiManipulator = GetComponent<LessonComponentManipulator>();
+        audioPlayer = GetComponent<LessonPlayer>();
         reset();
     }
 
@@ -75,12 +79,82 @@ public class LessonMeloDict : MonoBehaviour
             this.page3.SetActive(false);
             this.page4.SetActive(false);
             this.page5.SetActive(false);
-            this.page6.SetActive(false);
 
             nextButton.gameObject.SetActive(true);
             prevButton.gameObject.SetActive(false);
+            uiManipulator.activate_pitches(true);
         }
     }
+
+
+    public void play_scale(Button btn)
+    {
+        int pitches = uiManipulator.pitches.Count;
+        // disable button until scale finishes playing (avoids bugs & weird behavior)
+        btn.interactable = false;
+        StartCoroutine(enable_btn(pitches, btn, wait_time*pitches + (wait_time/3)));
+
+        for (int i=0; i<pitches; i++)
+        {
+            StartCoroutine(wait_play(i, wait_time*i));
+            audioPlayer.play_major_scale("C", 1, wait_time);
+            StartCoroutine(wait_off(i, wait_time*i + (wait_time)));
+        }
+    }
+
+    public void play_simple_melody(Button btn)
+    {
+        string[] simple_melody = new string[]{"C", "G", "D", "E"};
+        play_melody(btn, simple_melody);
+    }
+
+    public void play_complex_melody(Button btn)
+    {
+        string[] complex_melody = new string[]{"C", "A", "G", "B", "E", "F", "D", "C"};
+        play_melody(btn, complex_melody);
+    }
+
+    public void play_octave_melody(Button btn)
+    {
+        string[] octave_melody = new string[]{"A", "C", "E"};
+        play_melody(btn, octave_melody);
+        StartCoroutine(audioPlayer.play_note_by_name("C", 2, wait_time*(octave_melody.Length)));
+        StartCoroutine(wait_play(7, wait_time*(octave_melody.Length)));
+        StartCoroutine(wait_off(7, wait_time*(octave_melody.Length) + wait_time));
+    }
+
+    public void play_melody(Button btn, string[] melody)
+    {
+        List<int> melodyIndices = audioPlayer.get_pitch_indices(melody);
+
+        for (int i=0; i<melody.Length; i++)
+        {
+            StartCoroutine(wait_play(melodyIndices[i], wait_time*i));
+            StartCoroutine(audioPlayer.play_note_by_name(melody[i], 1, wait_time*i));
+            // audioPlayer.play_melody("C", 1, wait_time);
+            StartCoroutine(wait_off(melodyIndices[i], wait_time*i + (wait_time)));
+        }
+    }
+
+    IEnumerator enable_btn(int pitches, Button btn, float time)
+    {
+        yield return new WaitForSeconds(time);
+        btn.interactable = true;
+    }
+
+
+    IEnumerator wait_play(int pitchIndex, float time)
+    {
+        yield return new WaitForSeconds(time);
+        uiManipulator.play_color(pitchIndex);
+    }
+
+    IEnumerator wait_off(int pitchIndex, float time)
+    {
+        yield return new WaitForSeconds(time);
+        uiManipulator.off_color(pitchIndex);
+    }
+
 
     private void update_progress_text()
     {
@@ -122,11 +196,7 @@ public class LessonMeloDict : MonoBehaviour
                 Debug.Log(curr_page);
                 this.page4.SetActive(false);
                 this.page5.SetActive(true);
-                break;
-            case 5:
-                Debug.Log(curr_page);
-                this.page5.SetActive(false);
-                this.page6.SetActive(true);
+                uiManipulator.activate_pitches(false);
                 break;
         }
 
@@ -146,6 +216,7 @@ public class LessonMeloDict : MonoBehaviour
             prevButton.gameObject.SetActive(false);
         }
 
+        uiManipulator.activate_pitches(true);
 
         switch(curr_page)
         {
@@ -171,11 +242,6 @@ public class LessonMeloDict : MonoBehaviour
                 break;
             case 4:
                 Debug.Log(curr_page);
-                this.page5.SetActive(true);
-                this.page6.SetActive(false);
-                break;
-            case 5:
-                Debug.Log(curr_page);
                 break;
         }
 
@@ -199,4 +265,5 @@ public class LessonMeloDict : MonoBehaviour
             curr_page -= 1;
         }
     }
+
 }
