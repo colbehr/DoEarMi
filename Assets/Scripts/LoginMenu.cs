@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LoginMenu : MonoBehaviour
 {
@@ -87,6 +88,12 @@ public class LoginMenu : MonoBehaviour
         }
     }
 
+    public void sign_out()
+    {
+        meta.set_curr_user(null);
+        //send user to home screen
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     public void dev_skip()
     {
