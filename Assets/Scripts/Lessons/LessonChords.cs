@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class LessonIntervals : MonoBehaviour
+public class LessonChords : MonoBehaviour
 {
     private static int page_count = 6;
 
@@ -15,24 +15,24 @@ public class LessonIntervals : MonoBehaviour
     public Button nextButton;
     public Button prevButton;
     // Pages
+    public GameObject pages;
     public GameObject page1;
     public GameObject page2;
     public GameObject page3;
     public GameObject page4;
     public GameObject page5;
     public GameObject page6;
+    //Animations
+    public Animation nextPage;
 
+
+    private static readonly object reset_padlock = new object();
     private float progress;
     private float fillSpeed = 0.3f;
     private int curr_page;
     
     // Start is called before the first frame update
     void OnEnable()
-    { 
-        reset();
-    }
-
-    void OnDisable()
     { 
         reset();
     }
@@ -51,27 +51,35 @@ public class LessonIntervals : MonoBehaviour
 
     public void reset()
     {
-        this.progress = 0.0f;
-        this.curr_page = 0;
+        lock (reset_padlock)
+        {
+            this.progress = 0.0f;
+            this.curr_page = 0;
+            
+            // reset button listeners
+            nextButton.onClick.RemoveAllListeners();
+            prevButton.onClick.RemoveAllListeners();
 
-        nextButton.onClick.AddListener(() => next_page());
+            nextButton.onClick.AddListener(() => next_page());
 
-        prevButton.onClick.AddListener(() => prev_page());
-        prevButton.gameObject.SetActive(false);
+            prevButton.onClick.AddListener(() => prev_page());
+            prevButton.gameObject.SetActive(false);
+            nextPage = pages.GetComponent<Animation>();
 
-        progressBar.value = 0;
-        update_progress_text();
+            progressBar.value = 0;
+            update_progress_text();
 
-        // Make only first page visible TODO: Add animation support making this obsolete
-        this.page1.SetActive(true);
-        this.page2.SetActive(false);
-        this.page3.SetActive(false);
-        this.page4.SetActive(false);
-        this.page5.SetActive(false);
-        this.page6.SetActive(false);
+            // Make only first page visible TODO: Add animation support making this obsolete
+            this.page1.SetActive(true);
+            this.page2.SetActive(false);
+            this.page3.SetActive(false);
+            this.page4.SetActive(false);
+            this.page5.SetActive(false);
+            this.page6.SetActive(false);
 
-        nextButton.gameObject.SetActive(true);
-        prevButton.gameObject.SetActive(false);
+            nextButton.gameObject.SetActive(true);
+            prevButton.gameObject.SetActive(false);
+        }
     }
 
     private void update_progress_text()
