@@ -29,6 +29,7 @@ public class Navigation : MonoBehaviour
     public GameObject lessonsManagerMeloDict;
     public GameObject settingsManager;
     public GameObject profileManager;
+    public GameObject leaderboardManager;
     public GameObject lessonsManagerScaleDeg;
 
     private Animation buttonHighlightAnim;
@@ -74,9 +75,12 @@ public class Navigation : MonoBehaviour
         }
         else if (currentLocation == "leaderboard")
         {
+            leaderboardManager.SetActive(false);
+
             buttonHighlightAnim.Play("leaderboardToPractice");
             mainScreensAnim.Play("screenLeaderboardToPractice");
-        }
+        }            leaderboardManager.SetActive(true);
+
         currentLocation = "practice";
         pageTitleText.GetComponent<TMPro.TMP_Text>().SetText(currentLocation.ToUpper());
         print("toPractice");
@@ -87,11 +91,13 @@ public class Navigation : MonoBehaviour
         // transition to screen
         if (currentLocation == "practice")
         {
+            leaderboardManager.SetActive(true);
             buttonHighlightAnim.Play("practiceToLeaderboard");
             mainScreensAnim.Play("screenPracticeToLeaderboard");
         }
         else if (currentLocation == "lessons")
-        { 
+        {
+            leaderboardManager.SetActive(true);
             buttonHighlightAnim.Play("lessonsToLeaderboard");
             mainScreensAnim.Play("screenLessonsToLeaderboard");
         }
@@ -113,6 +119,7 @@ public class Navigation : MonoBehaviour
         }
         else if (currentLocation == "leaderboard")
         {
+            leaderboardManager.SetActive(false);
             buttonHighlightAnim.Play("leaderboardToLessons");
             mainScreensAnim.Play("screenLeaderboardToLessons");
         }
