@@ -29,7 +29,11 @@ public class LessonPlayer : MonoBehaviour
         { "B" , 11 }
     };
 
-    private int[] major_scale = { 0, 2, 4, 5, 7, 9, 11, 12 }; // steps as indices from scale root 
+    private int[] major_scale = { 0, 2, 4, 5, 7, 9, 11, 12 };   // steps as indices from scale root
+    private int[] major_chord = { 0, 4, 7 };                    // steps as indices from chord root
+    private int[] minor_chord = { 0, 3, 7 };                    // steps as indices from chord root
+    private int[] aug_chord   = { 0, 4, 8 };                    // steps as indices from chord root
+    private int[] dim_chord   = { 0, 3, 6 };                    // steps as indices from chord root
 
     void Start()
     {
@@ -42,27 +46,7 @@ public class LessonPlayer : MonoBehaviour
         Debug.Log(instrument.Count.ToString());
     }
 
-    public IEnumerator play_note_by_name(string note, int octave, float wait_time)
-    {
-        yield return new WaitForSeconds(wait_time);
-        soundPlayer.PlayOneShot(instrument[noteToIndex[note] + (octave*octave_index)], 1);
-    }
-
-    IEnumerator play_note_by_index(int index, int octave, float wait_time)
-    {
-        yield return new WaitForSeconds(wait_time);
-        soundPlayer.PlayOneShot(instrument[index + (octave*octave_index)], 1);
-    }
-
-    public void play_major_scale(string rootNote, int octave, float wait_time)
-    {
-        int rootIndex = noteToIndex[rootNote];
-        for (int i=0; i < major_scale.Length; i++)
-        {
-            StartCoroutine(play_note_by_index(rootIndex + major_scale[i], octave, wait_time*i));
-        }
-    }
-
+    
     public List<int> get_note_indices(string[] notes)
     {
         List<int> indices = new List<int>();
@@ -87,67 +71,67 @@ public class LessonPlayer : MonoBehaviour
         return indices;
     }
 
+
+    // BACKEND AUDIO PLAYERS //
+    public IEnumerator play_note_by_name(string note, int octave, float wait_time)
+    {
+        yield return new WaitForSeconds(wait_time);
+        soundPlayer.PlayOneShot(instrument[noteToIndex[note] + (octave*octave_index)], 1);
+    }
+
+    IEnumerator play_note_by_index(int index, int octave, float wait_time)
+    {
+        yield return new WaitForSeconds(wait_time);
+        soundPlayer.PlayOneShot(instrument[index + (octave*octave_index)], 1);
+    }
+
+    public void play_major_scale(string rootNote, int octave, float wait_time)
+    {
+        int rootIndex = noteToIndex[rootNote];
+        for (int i=0; i < major_scale.Length; i++)
+        {
+            StartCoroutine(play_note_by_index(rootIndex + major_scale[i], octave, wait_time*i));
+        }
+    }
+
+    // END BACKEND AUDIO PLAYERS //
+
+
+    // FRONT END AUDIO PLAYERS
+
+    public void play_note_from_btn(string note)
+    {
+        StartCoroutine(play_note_by_name(note, 1, 0.0f));
+    }
+
     // CHORDS //
-    public void c_major()
+    // for this, chords all have root C
+    public void play_chord(int chordType)
     {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[4+12], 1);
-        soundPlayer.PlayOneShot(instrument[7+12], 1); 
-    }
+        int[] chord = major_chord; // defaults to major if chordType not foudn
 
-    public void c_minor()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[3+12], 1);
-        soundPlayer.PlayOneShot(instrument[7+12], 1); 
-    }
+        // get note indices by chord type
+        switch(chordType)
+        {
+            case 1:
+                chord = major_chord;
+                break;
+            case 2:
+                chord = minor_chord;
+                break;
+            case 3:
+                chord = aug_chord;
+                break;
+            case 4:
+                chord = dim_chord;
+                break;
+        }
 
-    public void c_aug()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[4+12], 1);
-        soundPlayer.PlayOneShot(instrument[8+12], 1); 
+        soundPlayer.PlayOneShot(instrument[12 + chord[0]], 1);
+        soundPlayer.PlayOneShot(instrument[12 + chord[1]], 1);
+        soundPlayer.PlayOneShot(instrument[12 + chord[2]], 1); 
     }
-
-    public void c_dim()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[3+12], 1);
-        soundPlayer.PlayOneShot(instrument[6+12], 1); 
-    }
-    // END CHORDS//
-
-
-    // NOTES //   # don't judge, I know.
-    public void c_note()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-    }
-    public void eb_note()
-    {
-        soundPlayer.PlayOneShot(instrument[3+12], 1);
-    }
-    public void e_note()
-    {
-        soundPlayer.PlayOneShot(instrument[4+12], 1);
-    }
-    public void gb_note()
-    {
-        soundPlayer.PlayOneShot(instrument[6+12], 1);
-    }
-    public void g_note()
-    {
-        soundPlayer.PlayOneShot(instrument[7+12], 1);
-    }
-    public void gs_note()
-    {
-        soundPlayer.PlayOneShot(instrument[8+12], 1);
-    }
-    public void hc_note()
-    {
-        soundPlayer.PlayOneShot(instrument[12+12], 1);
-    }
-    // END NOTES //
+    // END CHORDS //
 
 
     // HARMONIC INTERVALS //
@@ -170,5 +154,6 @@ public class LessonPlayer : MonoBehaviour
     }
     // END HARMONIC INTERVALS //
 
+    // END FRONT END AUDIO PLAYERS //
 
 }

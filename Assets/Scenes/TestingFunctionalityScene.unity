@@ -208,14 +208,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: eb_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: D#
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1620980
@@ -1263,14 +1263,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: C
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &58556853
@@ -1529,14 +1529,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: eb_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: D#
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &65008440
@@ -1700,14 +1700,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: gb_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: F#
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &73238703
@@ -1833,14 +1833,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: C
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &75244287
@@ -2131,12 +2131,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_minor
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3897,12 +3897,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_dim
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4695,14 +4695,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: C
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &202844388
@@ -6007,14 +6007,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: g_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: G
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &288165395
@@ -8636,14 +8636,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: g_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: G
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &385410530
@@ -11424,14 +11424,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: e_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: E
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &499288543
@@ -15514,14 +15514,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: gs_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: G#
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &766870338
@@ -17617,12 +17617,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_aug
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -18395,14 +18395,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: C
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &896556779
@@ -20432,14 +20432,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: e_note
-        m_Mode: 1
+        m_MethodName: play_note_from_btn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: E
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &950219318
@@ -25705,12 +25705,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_dim
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -28302,12 +28302,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_minor
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -29416,12 +29416,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_major
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -36097,12 +36097,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_aug
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -48389,12 +48389,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455081394}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_major
-        m_Mode: 1
+        m_MethodName: play_chord
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
