@@ -15,6 +15,7 @@ public class Navigation : MonoBehaviour
     public GameObject chordsLessonScreen;
     public GameObject intervalsLessonScreen;
     public GameObject meloDictLessonScreen;
+    public GameObject scaleDegLessonScreen;
     public GameObject storeScreen;
     public GameObject mainScreens;
     public GameObject settingsScreen;
@@ -28,12 +29,14 @@ public class Navigation : MonoBehaviour
     public GameObject lessonsManagerMeloDict;
     public GameObject settingsManager;
     public GameObject profileManager;
+    public GameObject lessonsManagerScaleDeg;
 
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
     private Animation chordsLessonScreenAnim;
     private Animation intervalsLessonScreenAnim;
     private Animation meloDictLessonScreenAnim;
+    private Animation scaleDegLessonScreenAnim;
     private Animation mainScreensAnim;
     private Animation storeScreenAnim;
     private Animation profileScreenAnim;
@@ -48,6 +51,7 @@ public class Navigation : MonoBehaviour
         chordsLessonScreenAnim = chordsLessonScreen.GetComponent<Animation>();
         intervalsLessonScreenAnim = intervalsLessonScreen.GetComponent<Animation>();
         meloDictLessonScreenAnim = meloDictLessonScreen.GetComponent<Animation>();
+        scaleDegLessonScreenAnim = scaleDegLessonScreen.GetComponent<Animation>();
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
         mainScreensAnim = mainScreens.GetComponent<Animation>();
@@ -194,6 +198,19 @@ public class Navigation : MonoBehaviour
     {
         lessonsManagerMeloDict.SetActive(false);
         meloDictLessonScreenAnim.Play("OverlayHide");
+        print("intervals button hit");
+    }
+
+    public void openLessonScaleDeg()
+    {
+        lessonsManagerScaleDeg.SetActive(true);
+        scaleDegLessonScreenAnim.Play("OverlayShow");
+        print("intervals button hit");
+    }
+    public void closeLessonScaleDeg()
+    {
+        lessonsManagerScaleDeg.SetActive(false);
+        scaleDegLessonScreenAnim.Play("OverlayHide");
         print("intervals button hit");
     }
 

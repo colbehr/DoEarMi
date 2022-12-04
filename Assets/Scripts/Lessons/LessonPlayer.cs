@@ -6,6 +6,7 @@ public class LessonPlayer : MonoBehaviour
 {
     private static int octave_index = 12;
     private static float interval_time = 0.75f;
+    private static float chord_time = 0.5f;
 
     public AudioSource soundPlayer;
 
@@ -29,11 +30,22 @@ public class LessonPlayer : MonoBehaviour
         { "B" , 11 }
     };
 
-    private int[] major_scale = { 0, 2, 4, 5, 7, 9, 11, 12 };   // steps as indices from scale root
-    private int[] major_chord = { 0, 4, 7 };                    // steps as indices from chord root
-    private int[] minor_chord = { 0, 3, 7 };                    // steps as indices from chord root
-    private int[] aug_chord   = { 0, 4, 8 };                    // steps as indices from chord root
-    private int[] dim_chord   = { 0, 3, 6 };                    // steps as indices from chord root
+    private static int[] major_scale = { 0, 2, 4, 5, 7, 9, 11, 12 };   // steps as indices from scale root
+    private static int[] major_chord = { 0, 4, 7 };                    // steps as indices from chord root
+    private static int[] minor_chord = { 0, 3, 7 };                    // steps as indices from chord root
+    private static int[] aug_chord   = { 0, 4, 8 };                    // steps as indices from chord root
+    private static int[] dim_chord   = { 0, 3, 6 };                    // steps as indices from chord root
+
+    // Chord progressions... chord_I and chord_IV are just major_chord
+    private static int[] chord_II    = { 5, 7, 9 };
+    private static int[] chord_III   = { 7, 11, 14 };
+    private List<int[]> chordProgression = new List<int[]>
+    {
+        major_chord,
+        chord_II,
+        chord_III,
+        major_chord
+    };
 
     void Start()
     {
@@ -43,10 +55,9 @@ public class LessonPlayer : MonoBehaviour
 
         instrumentLoader = LoadAudioAsInstrument.Instance();
         instrument = instrumentLoader.get_instrument(instrumentName);
-        Debug.Log(instrument.Count.ToString());
     }
 
-    
+
     public List<int> get_note_indices(string[] notes)
     {
         List<int> indices = new List<int>();
@@ -71,8 +82,6 @@ public class LessonPlayer : MonoBehaviour
         return indices;
     }
 
-
-    // BACKEND AUDIO PLAYERS //
     public IEnumerator play_note_by_name(string note, int octave, float wait_time)
     {
         yield return new WaitForSeconds(wait_time);
@@ -94,18 +103,14 @@ public class LessonPlayer : MonoBehaviour
         }
     }
 
-    // END BACKEND AUDIO PLAYERS //
-
-
-    // FRONT END AUDIO PLAYERS
-
+    // Single note from UI call, always one octave up from lowest
     public void play_note_from_btn(string note)
     {
         StartCoroutine(play_note_by_name(note, 1, 0.0f));
     }
 
-    // CHORDS //
-    // for this, chords all have root C
+    // Chords
+    // for play_chord in lessons, chords all have root C and one octave up from lowest
     public void play_chord(int chordType)
     {
         int[] chord = major_chord; // defaults to major if chordType not foudn
@@ -131,10 +136,30 @@ public class LessonPlayer : MonoBehaviour
         soundPlayer.PlayOneShot(instrument[12 + chord[1]], 1);
         soundPlayer.PlayOneShot(instrument[12 + chord[2]], 1); 
     }
-    // END CHORDS //
 
 
-    // HARMONIC INTERVALS //
+    // Scale Degrees
+    IEnumerator play_chord(int[] chordType, int rootIndex, float wait_time)
+    {
+        yield return new WaitForSeconds(wait_time);
+
+        soundPlayer.PlayOneShot(instrument[12 + chordType[0] + rootIndex], 1);
+        soundPlayer.PlayOneShot(instrument[12 + chordType[1] + rootIndex], 1);
+        soundPlayer.PlayOneShot(instrument[12 + chordType[2] + rootIndex], 1);  
+    }
+
+    public void play_chord_progression(string rootNote)
+    {
+        int rootIndex = noteToIndex[rootNote];
+
+        for (int i=0; i<chordProgression.Count; i++)
+        {
+            StartCoroutine(play_chord(chordProgression[i], rootIndex, chord_time*i));
+        }
+    }
+
+ 
+    // Intervals 
     // these interval methods are for the lessons page, and as such always begin with root note C
     public void play_interval(int interIndex)
     {
@@ -152,8 +177,5 @@ public class LessonPlayer : MonoBehaviour
         soundPlayer.PlayOneShot(instrument[12], 1);
         soundPlayer.PlayOneShot(instrument[12+interIndex], 1);
     }
-    // END HARMONIC INTERVALS //
-
-    // END FRONT END AUDIO PLAYERS //
 
 }

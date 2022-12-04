@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class LessonMeloDict : MonoBehaviour
+public class LessonScaleDeg : MonoBehaviour
 {
     private static int page_count = 5;
     private static float wait_time = 1.0f; // wait time before playing next audioclip
@@ -103,37 +103,21 @@ public class LessonMeloDict : MonoBehaviour
         }
     }
 
-    public void play_simple_melody(Button btn)
+    // play chord progression called first from UI, wait times account for chord progression length
+    public void play_scale_deg(string note)
     {
-        string[] simple_melody = new string[]{"C", "G", "D", "E"};
-        play_melody(btn, simple_melody);
-    }
-
-    public void play_complex_melody(Button btn)
-    {
-        string[] complex_melody = new string[]{"C", "A", "G", "B", "E", "F", "D", "C"};
-        play_melody(btn, complex_melody);
-    }
-
-    public void play_octave_melody(Button btn)
-    {
-        string[] octave_melody = new string[]{"A", "C", "E"};
-        play_melody(btn, octave_melody);
-        StartCoroutine(audioPlayer.play_note_by_name("C", 2, wait_time*(octave_melody.Length)));
-        StartCoroutine(wait_play(7, wait_time*(octave_melody.Length)));
-        StartCoroutine(wait_off(7, wait_time*(octave_melody.Length) + wait_time));
-    }
-
-    public void play_melody(Button btn, string[] melody)
-    {
-        List<int> melodyIndices = audioPlayer.get_pitch_indices(melody);
-
-        for (int i=0; i<melody.Length; i++)
+        // only two cases on this lesson (should make this more scalable)
+        int pitchInd = 0;
+        int octave = 1;
+        if (note != "C")
         {
-            StartCoroutine(wait_play(melodyIndices[i], wait_time*i));
-            StartCoroutine(audioPlayer.play_note_by_name(melody[i], 1, wait_time*i));
-            StartCoroutine(wait_off(melodyIndices[i], wait_time*i + (wait_time)));
+            pitchInd = 3;
+            octave = 2;
         }
+        // int pitchInd = audioPlayer.get_pitch_indices(new string[]{note})[0];
+        StartCoroutine(wait_play(pitchInd, wait_time*2.5f));
+        StartCoroutine(audioPlayer.play_note_by_name(note, octave, wait_time*2.5f));
+        StartCoroutine(wait_off(pitchInd, wait_time*3.25f));        
     }
 
     IEnumerator enable_btn(int pitches, Button btn, float time)
@@ -181,11 +165,13 @@ public class LessonMeloDict : MonoBehaviour
                 // Debug.Log(curr_page);
                 this.page1.SetActive(false);
                 this.page2.SetActive(true);
+                uiManipulator.activate_pitches(false);
                 break;
             case 2:
                 // Debug.Log(curr_page);
                 this.page2.SetActive(false);
                 this.page3.SetActive(true);
+                uiManipulator.activate_pitches(true);
                 break;
             case 3:
                 // Debug.Log(curr_page);
@@ -224,11 +210,13 @@ public class LessonMeloDict : MonoBehaviour
                 // Debug.Log(curr_page);
                 this.page1.SetActive(true);
                 this.page2.SetActive(false);
+                uiManipulator.activate_pitches(true);
                 break;
             case 1:
                 // Debug.Log(curr_page);
                 this.page2.SetActive(true);
                 this.page3.SetActive(false);
+                uiManipulator.activate_pitches(false);
                 break;
             case 2:
                 // Debug.Log(curr_page);
