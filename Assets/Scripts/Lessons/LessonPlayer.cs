@@ -5,6 +5,7 @@ using UnityEngine;
 public class LessonPlayer : MonoBehaviour
 {
     private static int octave_index = 12;
+    private static float interval_time = 0.75f;
 
     public AudioSource soundPlayer;
 
@@ -150,65 +151,22 @@ public class LessonPlayer : MonoBehaviour
 
 
     // HARMONIC INTERVALS //
-    public void maj_sec()
+    // these interval methods are for the lessons page, and as such always begin with root note C
+    public void play_interval(int interIndex)
     {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[2+12], 1);
+        StartCoroutine(play_note_by_index(0, 1, 0.0f));
+        StartCoroutine(play_note_by_index(interIndex, 1, interval_time));
     }
-    public void maj_thr()
+    public void play_interval_octave()
     {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[4+12], 1);
+        StartCoroutine(play_note_by_index(0, 1, 0.0f));
+        StartCoroutine(play_note_by_index(0, 2, interval_time));
     }
-    public void maj_six()
+
+    public void play_harmonic_interval(int interIndex)
     {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[9+12], 1);
-    }
-    public void maj_sev()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[11+12], 1);
-    }
-    public void min_sec()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[1+12], 1);
-    }
-    public void min_thr()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[3+12], 1);
-    }
-    public void min_six()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[8+12], 1);
-    }
-    public void min_sev()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[10+12], 1);
-    }
-    public void perf_uni()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-    }
-    public void perf_four()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[5+12], 1);
-    }
-    public void perf_fift()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[7+12], 1);
-    }
-    public void perf_oct()
-    {
-        soundPlayer.PlayOneShot(instrument[0+12], 1);
-        soundPlayer.PlayOneShot(instrument[12+12], 1);
+        soundPlayer.PlayOneShot(instrument[12], 1);
+        soundPlayer.PlayOneShot(instrument[12+interIndex], 1);
     }
     // END HARMONIC INTERVALS //
 

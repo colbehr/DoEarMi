@@ -341,12 +341,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: perf_fift
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -550,12 +550,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: perf_four
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2490,7 +2490,7 @@ MonoBehaviour:
 
 
     Listen
-    to these perfect harmonic intervals with root note C:'
+    to these perfect intervals with root note C:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
   m_sharedMaterial: {fileID: 5326006838503245329, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
@@ -3271,12 +3271,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: perf_four
-        m_Mode: 1
+        m_MethodName: play_harmonic_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4278,7 +4278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Major Third E
+  m_text: Major Third
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
   m_sharedMaterial: {fileID: 5326006838503245329, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
@@ -6191,11 +6191,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Major intervals include a the major second, major third, major sixth,
-    and major seventh. Major harmonic intervals produce a bright, cheery sound.
+    and major seventh. Major intervals produce a bright, cheery sound.
 
 
     Listen
-    to these major harmonic intervals for with root note C:'
+    to these major melodic intervals for with root note C:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
   m_sharedMaterial: {fileID: 5326006838503245329, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
@@ -6357,12 +6357,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: maj_sev
-        m_Mode: 1
+        m_MethodName: play_harmonic_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7934,12 +7934,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: maj_sec
-        m_Mode: 1
+        m_MethodName: play_harmonic_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8503,12 +8503,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: g_note
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8806,12 +8806,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: hc_note
+        m_MethodName: play_interval_octave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9970,12 +9970,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: e_note
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10690,12 +10690,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: perf_oct
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15207,12 +15207,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: min_sev
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -17048,12 +17048,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: min_thr
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -18262,12 +18262,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: min_six
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -21888,12 +21888,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Minor intervals are one half step below their major counterparts. Harmonic
-    minor intervals produce a dark, sad sound.
+  m_text: 'Minor intervals are one half step below their major counterparts. Minor
+    intervals produce a dark, sad sound.
 
 
-    Listen to these minor harmonic
-    intervals with root note C:'
+    Listen to these minor intervals with
+    root note C:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
   m_sharedMaterial: {fileID: 5326006838503245329, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
@@ -22726,12 +22726,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: min_sec
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23662,12 +23662,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: maj_sec
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -24927,8 +24927,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: c_note
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26181,12 +26181,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: maj_sev
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -28093,12 +28093,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: perf_fift
-        m_Mode: 1
+        m_MethodName: play_harmonic_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -30098,8 +30098,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: perf_uni
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -30203,7 +30203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Root C
+  m_text: Perfect Unison
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
   m_sharedMaterial: {fileID: 5326006838503245329, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
@@ -30230,7 +30230,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.5
+  m_fontSize: 40.15
   m_fontSizeBase: 46.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -39865,12 +39865,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: maj_thr
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -43999,7 +43999,7 @@ MonoBehaviour:
 
 
     Listen to the following
-    examples of melodic intervals for the C major scale:'
+    examples of melodic intervals for root note C:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
   m_sharedMaterial: {fileID: 5326006838503245329, guid: debbedb9a6e63bc4c9bbea08bf5c2430, type: 2}
@@ -44236,7 +44236,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 248216428}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: closeLessonIntervals
+        m_MethodName: closeLessonMeloDict
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44248,7 +44248,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 248216428}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: openPractice_Intervals
+        m_MethodName: openPractice_MelodicDictation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45192,12 +45192,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2043708088}
         m_TargetAssemblyTypeName: LessonPlayer, Assembly-CSharp
-        m_MethodName: maj_six
-        m_Mode: 1
+        m_MethodName: play_interval
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -46753,7 +46753,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 248216428}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: closeLessonIntervals
+        m_MethodName: openLessonMeloDict
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
