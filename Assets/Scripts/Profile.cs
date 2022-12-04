@@ -14,6 +14,9 @@ public class Profile : MonoBehaviour
     public TMPro.TMP_Text emailText;
     public Image icon;
     public Image profileButtonIcon;
+    public Image boostIcon;
+    public Image freezeStreakIcon;
+    public TMPro.TMP_Text noBoostsText;
 
     // Backend Fields
     private DoEarMiMeta meta;
@@ -41,6 +44,30 @@ public class Profile : MonoBehaviour
         xpText.GetComponent<TMPro.TMP_Text>().SetText("XP " + user.get_xp().ToString());
         streakText.GetComponent<TMPro.TMP_Text>().SetText("STREAK " + user.get_streak().ToString());
 
+        //boosts icons
+        if (user.isBoosted()){
+            boostIcon.transform.gameObject.SetActive(true);
+        }
+        else{
+            boostIcon.transform.gameObject.SetActive(false);
+        }
+
+        if (user.isFrozen())
+        {
+            freezeStreakIcon.transform.gameObject.SetActive(true);
+        }
+        else
+        {
+            freezeStreakIcon.transform.gameObject.SetActive(false);
+        }
+
+        if (!user.isBoosted() && !user.isFrozen())
+        {
+            noBoostsText.transform.gameObject.SetActive(true);
+        }
+        else { 
+            noBoostsText.transform.gameObject.SetActive(false);
+        }
     }
 
     // void Update()

@@ -20,7 +20,7 @@ public class User
     [SerializeField]
     private int xp, streak, credits;
     [SerializeField]
-    private bool streak_frozen;
+    private bool streak_frozen, boosted;
 
     // COLLECTIONS
     // Instruments and icons stored as list of string instrument names and filenames respectively, 
@@ -50,6 +50,7 @@ public class User
         this.streak = 0;
         this.credits = 100;        // TODO: free money to start, enough to maybe buy a simple icon ?
         this.streak_frozen = false;
+        this.boosted = false;
 
         // Add default icon to user collection
         this.icons = new List<string>();
@@ -161,8 +162,13 @@ public class User
         update_json();
         // TODO: change streak color/add fire icon beside it ?
     }
-
-
+    public bool isFrozen() {
+        return this.streak_frozen;
+    }
+    public bool isBoosted()
+    {
+        return this.boosted;
+    }
     public int get_xp()
     {
         return this.xp;
