@@ -202,6 +202,11 @@ public class User
         update_json();
     }
 
+    public List<string> get_instruments()
+    {
+        return this.instruments;
+    }
+
 
     // called from all setters
     public void update_json()

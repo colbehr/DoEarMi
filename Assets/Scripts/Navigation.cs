@@ -17,6 +17,7 @@ public class Navigation : MonoBehaviour
     public GameObject meloDictLessonScreen;
     public GameObject storeScreen;
     public GameObject mainScreens;
+    public GameObject settingsScreen;
     public GameObject pageTitleText;
     public GameObject practiceManager_Chords;
     public GameObject practiceManager_ScaleDegrees;
@@ -25,6 +26,8 @@ public class Navigation : MonoBehaviour
     public GameObject lessonsManagerChords;
     public GameObject lessonsManagerIntervals;
     public GameObject lessonsManagerMeloDict;
+    public GameObject settingsManager;
+    public GameObject profileManager;
 
     private Animation buttonHighlightAnim;
     private Animation practiceScreenAnim;
@@ -34,6 +37,7 @@ public class Navigation : MonoBehaviour
     private Animation mainScreensAnim;
     private Animation storeScreenAnim;
     private Animation profileScreenAnim;
+    private Animation settingsScreenAnim;
     private string currentLocation;
 
     // Start is called before the first frame update
@@ -47,6 +51,7 @@ public class Navigation : MonoBehaviour
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
         mainScreensAnim = mainScreens.GetComponent<Animation>();
+        settingsScreenAnim = settingsScreen.GetComponent<Animation>();
         currentLocation = "practice";
     }
 
@@ -128,16 +133,30 @@ public class Navigation : MonoBehaviour
     }
     public void openProfile()
     {
+        profileManager.SetActive(true);
         profileScreenAnim.Play("OverlayShow");
         print("openProfile");
     }
 
     public void closeProfile()
     {
+        profileManager.SetActive(false);
         profileScreenAnim.Play("OverlayHide");
         print("closeProfile");
     }
+    public void openSettings()
+    {
+        settingsManager.SetActive(true);
+        settingsScreenAnim.Play("OverlayShow");
+        print("openSettings");
+    }
 
+    public void closeSettings()
+    {
+        settingsManager.SetActive(false);
+        settingsScreenAnim.Play("OverlayHide");
+        print("closeSettings");
+    }
     // Lessons Navigation
     public void openLessonChords()
     {
