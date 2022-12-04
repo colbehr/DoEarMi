@@ -29,7 +29,6 @@ public class SettingsMenu : MonoBehaviour
     {
         this.meta = DoEarMiMeta.Instance();
 
-        // TODO: testing only!! gets first user from all users list, need sign in implemented to get proper user
         this.user = meta.get_curr_user();
 
         //get username email instruments and icon 
@@ -40,6 +39,7 @@ public class SettingsMenu : MonoBehaviour
         Sprite sprite = Resources.Load<Sprite>(meta.get_default_icon());
         icon.GetComponent<Image>().sprite = sprite;
         instrumentsDropdown.ClearOptions();
+        // TODO: current instrument is not top instrument in list
         instrumentsDropdown.AddOptions(user.get_instruments());
         //add code to pick option 
     }
@@ -48,11 +48,17 @@ public class SettingsMenu : MonoBehaviour
     {
         user.update_email(emailText.GetComponent<TMPro.TMP_InputField>().text);
         user.update_username(usernameText.GetComponent<TMPro.TMP_InputField>().text);
-        //user.set_active_instrument(instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().options[instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().value].text);
+        user.remove_all_active();
+        user.set_active(instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().options[instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().value].text);
         user.update_json();
         //update profile screen
         profileManager.GetComponent<Profile>().OnEnable();
         print("Settings Saved");
 
+    }
+
+    public void giveInst() {
+        user.add_instrument("BassI");
+        user.add_instrument("EPianoII");
     }
 }

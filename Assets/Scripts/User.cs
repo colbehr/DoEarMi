@@ -207,7 +207,16 @@ public class User
         this.active_instruments.Remove(instrument);
         update_json();
     }
-
+    public void remove_all_active()
+    {
+        this.active_instruments.Clear();
+        update_json();
+    }
+    public void set_active(string instrument)
+    {
+        this.active_instruments.Add(instrument);
+        update_json();
+    }
     public List<string> get_instruments()
     {
         return this.instruments;
