@@ -39,7 +39,7 @@ public class PracticeScaleDegrees : Practice
         }
 
         currentQuestion = new Question();
-        currentQuestion.key = (int) Random.Range(0, 0);       // TODO: Change bounds based on instrument range
+        currentQuestion.key = (int) Random.Range(5, instrument.Count - 14);       
         // Set random Major scale degree
         switch (Random.Range(1, 8)) {
         case 1:
@@ -90,7 +90,7 @@ public class PracticeScaleDegrees : Practice
         yield return new WaitForSeconds(0.5F);
         soundPlayer.PlayOneShot(instrument[currentQuestion.key + 7], 1);
         soundPlayer.PlayOneShot(instrument[currentQuestion.key + 11], 1);
-        //soundPlayer.PlayOneShot(instrument[currentQuestion.key + 13], 1); //TODO: enable this note once there is enough range
+        soundPlayer.PlayOneShot(instrument[currentQuestion.key + 14], 1);
         yield return new WaitForSeconds(0.5F);
         soundPlayer.PlayOneShot(instrument[currentQuestion.key], 1);
         soundPlayer.PlayOneShot(instrument[currentQuestion.key + 4], 1);

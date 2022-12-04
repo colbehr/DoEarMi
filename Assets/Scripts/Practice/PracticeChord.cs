@@ -37,7 +37,7 @@ public class PracticeChord : Practice
         }
 
         currentQuestion = new Question();
-        currentQuestion.root = (int) Random.Range(0, 1);       // TODO: Change bounds based on instrument range
+        currentQuestion.root = (int) Random.Range(10, instrument.Count - 10);
         currentQuestion.chordType = (int) Random.Range(1, 5);
         playQuestion();
     }

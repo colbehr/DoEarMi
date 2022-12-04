@@ -44,11 +44,11 @@ public abstract class Practice : MonoBehaviour
     void OnEnable() 
     {
         meta = DoEarMiMeta.Instance();
-        user = meta.load_all_users().ElementAt(0); // TODO: this is test user until login is implemented 
+        user = meta.get_curr_user();
         playButton.onClick.AddListener(playQuestion);
 
         instrumentLoader = LoadAudioAsInstrument.Instance();
-        instrument = instrumentLoader.get_instrument("EPianoI"); // TODO: get instrument from user
+        instrument = instrumentLoader.get_instrument("EPianoII"); // TODO: get instrument from user
         foreach (GameObject button in answerButtons) 
         {
             button.SetActive(true);
