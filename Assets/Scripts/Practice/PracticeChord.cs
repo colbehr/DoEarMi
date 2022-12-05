@@ -11,8 +11,16 @@ public class PracticeChord : Practice
 
     private struct Question {
         public int root;
-        // 1 = Major, 2 = Minor, 3 = Augmented, 4 = Diminished
         public int chordType;
+    }
+
+    // Initialize answer dictionary
+    public override void loadAnswers()
+    {
+        answerSet.Add(1, new Answer("Major"));
+        answerSet.Add(2, new Answer("Minor"));
+        answerSet.Add(3, new Answer("Augmented"));
+        answerSet.Add(4, new Answer("Diminished"));
     }
 
     // Randomly generate and setup a question after short delay
@@ -73,21 +81,11 @@ public class PracticeChord : Practice
     public override void answer() 
     {
         GameObject button = EventSystem.current.currentSelectedGameObject;
-        bool correct = false;
-
-        // Check if answer is correct (should probably find a nicer way to do this)
-        if ((currentQuestion.chordType == 1 && button.name == "Major") 
-            || (currentQuestion.chordType == 2 && button.name == "Minor") 
-            || (currentQuestion.chordType == 3 && button.name == "Augmented") 
-            || (currentQuestion.chordType == 4 && button.name == "Diminished")) 
-        {
-            correct = true;
-        } 
-
-        if (correct) 
+        // Check if answer is correct
+        if (answerSet[currentQuestion.chordType].getName() == button.name) 
         {
             playQuestion();
-            base.correct(button);
+            base.correct(button, currentQuestion.chordType);
         } 
         else 
         {
@@ -95,5 +93,17 @@ public class PracticeChord : Practice
             failed = true;
             button.GetComponent<Image>().color = new Color32(255, 80, 80, 255);
         }
+    }
+
+    public override string resultsToString() 
+    {
+        string results = "";
+
+        foreach(KeyValuePair<int, Answer> entry in answerSet)
+        {
+            results += entry.Value.toString();
+        }
+
+        return results;
     }
 }

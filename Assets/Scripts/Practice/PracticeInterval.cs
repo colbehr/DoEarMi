@@ -11,10 +11,19 @@ public class PracticeInterval : Practice
 
     private struct Question {
         public int root;
-        // Major Intervals:
-        // 1 = Major 2nd, 2 = Major 3rd, 3 = Perfect 4th, 
-        // 4 = Perfect 5th, 5 = Major 6th, 6 = Major 7th, 7 = Octave
         public int interval;
+    }
+
+    // Initialize answer dictionary
+    public override void loadAnswers()
+    {
+        answerSet.Add(1, new Answer("Major 2nd"));
+        answerSet.Add(2, new Answer("Major 3rd"));
+        answerSet.Add(3, new Answer("Perfect 4th"));
+        answerSet.Add(4, new Answer("Perfect 5th"));
+        answerSet.Add(5, new Answer("Major 6th"));
+        answerSet.Add(6, new Answer("Major 7th"));
+        answerSet.Add(7, new Answer("Octave"));
     }
 
     // Randomly generate and setup a question after short delay
@@ -95,23 +104,10 @@ public class PracticeInterval : Practice
     public override void answer() 
     {
         GameObject button = EventSystem.current.currentSelectedGameObject;
-        bool correct = false;
-
-        // Check if answer is correct (should probably find a nicer way to do this)
-        if ((currentQuestion.interval == 1 && button.name == "Major 2nd") 
-            || (currentQuestion.interval == 2 && button.name == "Major 3rd") 
-            || (currentQuestion.interval == 3 && button.name == "Perfect 4th") 
-            || (currentQuestion.interval == 4 && button.name == "Perfect 5th")
-            || (currentQuestion.interval == 5 && button.name == "Major 6th") 
-            || (currentQuestion.interval == 6 && button.name == "Major 7th") 
-            || (currentQuestion.interval == 7 && button.name == "Octave")) 
+        // Check if answer is correct
+        if (answerSet[currentQuestion.interval].getName() == button.name)
         {
-            correct = true;
-        } 
-
-        if (correct) 
-        {
-            base.correct(button);
+            base.correct(button, currentQuestion.interval);
         } 
         else 
         {
@@ -119,5 +115,17 @@ public class PracticeInterval : Practice
             failed = true;
             button.GetComponent<Image>().color = new Color32(255, 80, 80, 255);
         }
+    }
+
+    public override string resultsToString() 
+    {
+        string results = "";
+
+        foreach(KeyValuePair<int, Answer> entry in answerSet)
+        {
+            results += entry.Value.toString();
+        }
+
+        return results;
     }
 }

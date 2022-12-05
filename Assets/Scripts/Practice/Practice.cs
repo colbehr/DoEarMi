@@ -11,6 +11,7 @@ public abstract class Practice : MonoBehaviour
     public LoadAudioAsInstrument instrumentLoader;
     public List<AudioClip> instrument;
 
+    public Dictionary<int, Answer> answerSet = new Dictionary<int, Answer> ();
     public int numberOfQuestions = 5;
     public int questionNumber;
     public int score;
@@ -18,14 +19,18 @@ public abstract class Practice : MonoBehaviour
     public bool failed;
     public List<GameObject> answerButtons = new List<GameObject>();
     public GameObject practiceScreen;
+    public GameObject accuracyText;
+    public GameObject expCreditText;
     public Animation practiceScreenAnim;
     
     public Button playButton;
+    public Button retryButton;
     public Slider progressBar;
     public float progress;
     public float fillSpeed = 0.15f;
 
-    // Backend Fields
+    public GameObject resultPanel;
+
     public DoEarMiMeta meta;
     public User user;
 
@@ -46,23 +51,12 @@ public abstract class Practice : MonoBehaviour
         meta = DoEarMiMeta.Instance();
         user = meta.get_curr_user();
         playButton.onClick.AddListener(playQuestion);
+        retryButton.onClick.AddListener(initializePractice);
 
         instrumentLoader = LoadAudioAsInstrument.Instance();
         instrument = instrumentLoader.get_instrument("EPianoII"); // TODO: get instrument from user
-        foreach (GameObject button in answerButtons) 
-        {
-            button.SetActive(true);
-            button.GetComponent<Image>().color = new Color32(98, 182, 203, 255);
-            button.GetComponent<Button>().enabled = true;
-        }
-
-        score = 0;
-        failed = false;
-        progress = 0;
-        progressBar.value = 0;
-        questionNumber = 1;
-        progressBar.transform.Find("PercentCompleteText").GetComponent<TMPro.TMP_Text>().SetText(0 + "% Complete");
-        generateQuestion(0.5F);
+        loadAnswers();
+        initializePractice();
     }
 
     // OnDisable is called when Object is disabled
@@ -73,6 +67,8 @@ public abstract class Practice : MonoBehaviour
             button.SetActive(false);
         }
         playButton.onClick.RemoveListener(playQuestion);
+        retryButton.onClick.RemoveListener(initializePractice);
+        practiceScreenAnim.Play("OverlayHide");
     }
 
     // Update is called once per frame
@@ -84,21 +80,56 @@ public abstract class Practice : MonoBehaviour
         }         
     }
 
+    void initializePractice()
+    {
+        resultPanel.SetActive(false);
+        foreach (GameObject button in answerButtons) 
+        {
+            button.SetActive(true);
+            button.GetComponent<Image>().color = new Color32(98, 182, 203, 255);
+            button.GetComponent<Button>().enabled = true;
+        }
+        foreach(KeyValuePair<int, Answer> entry in answerSet)
+        {
+            entry.Value.reset();
+        }
+        score = 0;
+        failed = false;
+        progress = 0;
+        progressBar.value = 0;
+        questionNumber = 1;
+        progressBar.transform.Find("PercentCompleteText").GetComponent<TMPro.TMP_Text>().SetText(0 + "% Complete");
+        generateQuestion(0.5F);
+    }
+
     // Randomly generate and setup a question after short delay
     public abstract void generateQuestion(float delay);
 
-    // Play chord based on current Question
+    // Play audio based on current Question
     public abstract void playQuestion();
 
     // Function linked to buttons onClick()
     public abstract void answer();
 
+    // Initialize answer dictionary
+    public abstract void loadAnswers();
+
+    // Create results string based on practice mode
+    public abstract string resultsToString();
+
     // Called on correct answer
-    public void correct(GameObject button) {
+    public void correct(GameObject button, int answerKey) {
         Debug.Log("Correct");
         button.GetComponent<Image>().color = new Color32(100, 200, 130, 255);
-        if (!failed)
+        if (!failed) 
+        {
+            answerSet[answerKey].correct();
             score++;
+        }
+        else
+        {
+            answerSet[answerKey].incorrect();
+        }
         progress = progressBar.value + (float)1/numberOfQuestions;
         progressBar.transform.Find("PercentCompleteText").GetComponent<TMPro.TMP_Text>().SetText((int)(progress*100) + "% Complete");
         
@@ -116,32 +147,25 @@ public abstract class Practice : MonoBehaviour
     // Called when practice is finished
     public void completePractice() 
     {
-        disable(4);
-        int xpGain = score * 10;
-        int creditGain = score * 100;
+        int xpGain = score * 100;
+        int creditGain = score * 10;
         user.update_xp(xpGain);
         user.update_credits(creditGain);
         Debug.Log("Score:" + score + "/" + numberOfQuestions);
         Debug.Log("Exp increase: " + xpGain + " Currency increase: " + creditGain);
         Debug.Log("User now has " + user.get_xp() + " XP and " + user.get_credits() + " credits");
-        //TODO: user feedback on credits/exp
+        accuracyText.GetComponent<TMPro.TMP_Text>().SetText(resultsToString());
+        expCreditText.GetComponent<TMPro.TMP_Text>().SetText("Experience gained: " + xpGain + "\nCredits earned: " + creditGain);
+        StartCoroutine(displayResults(2));
     } 
 
-    // Disable GameObject after short delay
-    private void disable(float delayTime)
-    {
-        //TODO: Update user based on results
-        StartCoroutine(DelayDisable(delayTime));
-    }
-    
-    IEnumerator DelayDisable(float delayTime)
+    IEnumerator displayResults(float delayTime)
     {
         foreach (GameObject button in answerButtons) 
         {
             button.GetComponent<Button>().enabled = false;
         }
         yield return new WaitForSeconds(delayTime);
-        gameObject.SetActive(false);
-        practiceScreenAnim.Play("OverlayHide");
+        resultPanel.SetActive(true);
     }
 }

@@ -11,9 +11,19 @@ public class PracticeScaleDegrees : Practice
 
     private struct Question {
         public int key;
-        // Major Scale Degrees:
-        // 0 = do, 2 = re, 4 = mi, 5 = fa, 7 = sol, 9 = la, 11 = ti
         public int degree;
+    }
+
+    // Initialize answer dictionary
+    public override void loadAnswers()
+    {
+        answerSet.Add(0, new Answer("Do"));
+        answerSet.Add(2, new Answer("Re"));
+        answerSet.Add(4, new Answer("Mi"));
+        answerSet.Add(5, new Answer("Fa"));
+        answerSet.Add(7, new Answer("Sol"));
+        answerSet.Add(9, new Answer("La"));
+        answerSet.Add(11, new Answer("Ti"));
     }
 
     // Randomly generate and setup a question after short delay
@@ -109,24 +119,11 @@ public class PracticeScaleDegrees : Practice
     public override void answer() 
     {
         GameObject button = EventSystem.current.currentSelectedGameObject;
-        bool correct = false;
-
-        // Check if answer is correct (should probably find a nicer way to do this)
-        if ((currentQuestion.degree == 0 && button.name == "Do") 
-            || (currentQuestion.degree == 2 && button.name == "Re") 
-            || (currentQuestion.degree == 4 && button.name == "Mi") 
-            || (currentQuestion.degree == 5 && button.name == "Fa")
-            || (currentQuestion.degree == 7 && button.name == "Sol") 
-            || (currentQuestion.degree == 9 && button.name == "La") 
-            || (currentQuestion.degree == 11 && button.name == "Ti")) 
-        {
-            correct = true;
-        } 
-
-        if (correct) 
+        // Check if answer is correct
+        if (answerSet[currentQuestion.degree].getName() == button.name) 
         {
             soundPlayer.PlayOneShot(instrument[currentQuestion.key + currentQuestion.degree], 1);
-            base.correct(button);
+            base.correct(button, currentQuestion.degree);
         } 
         else 
         {
@@ -134,5 +131,17 @@ public class PracticeScaleDegrees : Practice
             failed = true;
             button.GetComponent<Image>().color = new Color32(255, 80, 80, 255);
         }
+    }
+
+    public override string resultsToString() 
+    {
+        string results = "";
+
+        foreach(KeyValuePair<int, Answer> entry in answerSet)
+        {
+            results += entry.Value.toString();
+        }
+
+        return results;
     }
 }
