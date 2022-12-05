@@ -98,6 +98,11 @@ public class LoginMenu : MonoBehaviour
     public void dev_skip()
     {
         User user = meta.find_user("ShrimpAce");
+
+        if (user == null) { 
+            user = JsonUtility.FromJson<User>("{\"username\":\"ShrimpAce\",\"uID\":\"d224fb65-be55-4be3-a8b1-605b00179cb2\",\"password\":\"password1\",\"email\":\"ShrimpAce@email.com\",\"xp\":10213,\"streak\":0,\"credits\":1100,\"streak_frozen\":false,\"boosted\":false,\"instruments\":[\"GuitarI\",\"BassI\",\"EPianoII\"],\"active_instruments\":[\"BassI\"],\"icons\":[\"ProfileIcons/defaultIconTest\"],\"active_icon\":\"ProfileIcons/defaultIconTest\"}");
+            meta.add_user(user);
+        }
         meta.set_curr_user(user);
 
         // Debug.Log(user.get_uID());

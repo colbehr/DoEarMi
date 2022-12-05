@@ -35,7 +35,6 @@ public class SettingsMenu : MonoBehaviour
         usernameText.GetComponent<TMPro.TMP_InputField>().text = user.get_username().ToString();
         emailText.GetComponent<TMPro.TMP_InputField>().text = user.get_email().ToString();
 
-        // TODO: for testing, get profile icon name from meta... should be getting it from user.
         Sprite sprite = Resources.Load<Sprite>(meta.get_default_icon());
         icon.GetComponent<Image>().sprite = sprite;
         instrumentsDropdown.ClearOptions();
