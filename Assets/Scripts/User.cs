@@ -222,6 +222,20 @@ public class User
         return this.instruments;
     }
 
+    public void add_icon(string icon)
+    {
+        this.icons.Add(icon);
+        for(int i=0; i<icons.Count; i++)
+        {
+            Debug.Log(icons[i]);
+        }
+    }
+
+    public List<string> get_icons()
+    {
+        return this.icons;
+    }
+
 
     // called from all setters
     public void update_json()

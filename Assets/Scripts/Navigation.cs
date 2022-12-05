@@ -29,6 +29,7 @@ public class Navigation : MonoBehaviour
     public GameObject lessonsManagerMeloDict;
     public GameObject settingsManager;
     public GameObject profileManager;
+    public GameObject shopManager;
     public GameObject leaderboardManager;
     public GameObject lessonsManagerScaleDeg;
 
@@ -133,12 +134,14 @@ public class Navigation : MonoBehaviour
 
     public void openStore()
     {
+        shopManager.SetActive(true);
         storeScreenAnim.Play("OverlayShow");
         print("openStore");
     }
 
     public void closeStore()
     {
+        shopManager.SetActive(false);
         storeScreenAnim.Play("OverlayHide");
         print("closeStore");
     }
