@@ -15,6 +15,7 @@ public class LoginMenu : MonoBehaviour
     public GameObject uname;
     public GameObject password;
     public GameObject failText;
+    public Image profIcon; // sets profile nav icon here on login
     // Buttons
     public GameObject signInButton;
     public GameObject showPassword;
@@ -74,6 +75,7 @@ public class LoginMenu : MonoBehaviour
 
             meta.set_curr_user(user);
             user.update_last_active();
+            string icon = user.get_active_icon();
 
             // TODO: welcome back <user> ! popup
 
@@ -81,6 +83,7 @@ public class LoginMenu : MonoBehaviour
             practice.SetActive(true);
             upperNav.SetActive(true);
             lowerNav.SetActive(true);
+            profIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(icon);
         }
         else
         {
@@ -100,7 +103,7 @@ public class LoginMenu : MonoBehaviour
         User user = meta.find_user("ShrimpAce");
 
         if (user == null) { 
-            user = JsonUtility.FromJson<User>("{\"username\":\"ShrimpAce\",\"uID\":\"d224fb65-be55-4be3-a8b1-605b00179cb2\",\"password\":\"password1\",\"email\":\"ShrimpAce@email.com\",\"xp\":10213,\"streak\":0,\"credits\":1100,\"streak_frozen\":false,\"boosted\":false,\"instruments\":[\"GuitarI\",\"BassI\",\"EPianoII\"],\"active_instruments\":[\"BassI\"],\"icons\":[\"ProfileIcons/defaultIconTest\"],\"active_icon\":\"ProfileIcons/defaultIconTest\"}");
+            user = JsonUtility.FromJson<User>("{\"username\":\"ShrimpAce\",\"uID\":\"d224fb65-be55-4be3-a8b1-605b00179cb2\",\"password\":\"password1\",\"email\":\"ShrimpAce@email.com\",\"xp\":10213,\"streak\":0,\"credits\":1100,\"streak_frozen\":false,\"boosted\":false,\"instruments\":[\"GuitarI\",\"BassI\",\"EPianoII\"],\"active_instrument\":[\"PianoI\"],\"icons\":[\"ProfileIcons/defaultIcon\"],\"active_icon\":\"ProfileIcons/defaultIcon\"}");
             meta.add_user(user);
         }
         meta.set_curr_user(user);

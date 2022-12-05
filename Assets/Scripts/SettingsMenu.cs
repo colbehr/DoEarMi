@@ -47,8 +47,8 @@ public class SettingsMenu : MonoBehaviour
     {
         user.update_email(emailText.GetComponent<TMPro.TMP_InputField>().text);
         user.update_username(usernameText.GetComponent<TMPro.TMP_InputField>().text);
-        user.remove_all_active();
-        user.set_active(instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().options[instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().value].text);
+        // user.remove_all_active();
+        user.set_active_instrument(instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().options[instrumentsDropdown.GetComponent<TMPro.TMP_Dropdown>().value].text);
         user.update_json();
         //update profile screen
         profileManager.GetComponent<Profile>().OnEnable();

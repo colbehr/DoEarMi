@@ -156,7 +156,6 @@ public class Shop : MonoBehaviour
     {
         string spriteName = iconGOs[iconNum].GetComponent<Image>().sprite.name;
         int cost = spriteNameToCost[spriteName];
-        GameObject child;
 
         // reset curr item for purchase confirmation
         curr_selected_item[0] = "icon";
