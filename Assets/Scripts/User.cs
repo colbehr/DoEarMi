@@ -14,7 +14,6 @@ public class User
     private string username, uID, password, email;
     [SerializeField]
     private DateTime last_active;
-    // private string active_icon_filename; // TODO: not sure if this is how it should be stored? Sprite maybe?
 
     // STATS
     [SerializeField]
@@ -26,9 +25,9 @@ public class User
     // Instruments and icons stored as list of string instrument names and filenames respectively, 
     // load audio clips via LoadAudioAsInstrument with name
     [SerializeField]
-    private List<string> instruments, active_instruments, icons;
+    private List<string> instruments, icons;
     [SerializeField]
-    private string active_icon; 
+    private string active_icon, active_instrument; 
 
     // private List<Boost> boosts;
 
@@ -48,7 +47,7 @@ public class User
 
         this.xp = 0;
         this.streak = 0;
-        this.credits = 100;        // TODO: free money to start, enough to maybe buy a simple icon ?
+        this.credits = 100;
         this.streak_frozen = false;
         this.boosted = false;
 
@@ -59,11 +58,10 @@ public class User
         
         // Add default instrument to user collection
         this.instruments = new List<string>();
-        this.active_instruments = new List<string>();
 
         string default_instrument = meta.get_default_instrument();
         this.instruments.Add(default_instrument);
-        this.active_instruments.Add(default_instrument);
+        this.active_instrument = default_instrument;
         
         // this.boosts.Add(2xXP)                     // TODO: free boost to start, encourage initial engagement ?
 
@@ -198,24 +196,18 @@ public class User
     public void add_instrument(string instrument)
     {
         this.instruments.Add(instrument);
-        this.active_instruments.Add(instrument);
         update_json();
     }
 
-    public void remove_active(string instrument)
+    public void set_active_instrument(string instrument)
     {
-        this.active_instruments.Remove(instrument);
+        this.active_instrument = instrument;
         update_json();
     }
-    public void remove_all_active()
+
+    public string get_active_instrument()
     {
-        this.active_instruments.Clear();
-        update_json();
-    }
-    public void set_active(string instrument)
-    {
-        this.active_instruments.Add(instrument);
-        update_json();
+        return this.active_instrument;
     }
     public List<string> get_instruments()
     {
@@ -244,6 +236,11 @@ public class User
         this.meta.save_user_data(this);
     }
 
+
+    public string get_active_icon()
+    {
+        return this.active_icon;
+    }
     // // called from shop on purchase
     // public void update_icons(string icon_file)
     // {
@@ -255,6 +252,5 @@ public class User
     // {
     //     this.boosts.Add(boost);
     // }
-
 
 }

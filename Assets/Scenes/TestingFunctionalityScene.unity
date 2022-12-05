@@ -14121,6 +14121,7 @@ MonoBehaviour:
   uname: {fileID: 607693407}
   password: {fileID: 332902399}
   failText: {fileID: 2139803652}
+  profIcon: {fileID: 1670911889}
   signInButton: {fileID: 1033508952}
   showPassword: {fileID: 58892046}
   hidePassword: {fileID: 1764593014}

@@ -54,7 +54,7 @@ public abstract class Practice : MonoBehaviour
         retryButton.onClick.AddListener(initializePractice);
 
         instrumentLoader = LoadAudioAsInstrument.Instance();
-        instrument = instrumentLoader.get_instrument("EPianoII"); // TODO: get instrument from user
+        instrument = instrumentLoader.get_instrument(user.get_active_instrument()); // TODO: get instrument from user
         loadAnswers();
         initializePractice();
     }
@@ -148,7 +148,7 @@ public abstract class Practice : MonoBehaviour
     public void completePractice() 
     {
         int xpGain = score * 100;
-        int creditGain = score * 10;
+        int creditGain = score * 2;
         user.update_xp(xpGain);
         user.update_credits(creditGain);
         Debug.Log("Score:" + score + "/" + numberOfQuestions);
