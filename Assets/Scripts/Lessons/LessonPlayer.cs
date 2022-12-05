@@ -37,7 +37,7 @@ public class LessonPlayer : MonoBehaviour
     private static int[] dim_chord   = { 0, 3, 6 };                    // steps as indices from chord root
 
     // Chord progressions... chord_I and chord_IV are just major_chord
-    private static int[] chord_II    = { 5, 7, 9 };
+    private static int[] chord_II    = { 5, 9, 12 };
     private static int[] chord_III   = { 7, 11, 14 };
     private List<int[]> chordProgression = new List<int[]>
     {

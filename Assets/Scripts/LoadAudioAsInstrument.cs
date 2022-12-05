@@ -39,6 +39,7 @@ public class LoadAudioAsInstrument
     // value (string): intermediate path to audioclips without specifying each note (must be .wav files)
     private Dictionary<string, string> All_Instruments = new Dictionary<string, string>
     {
+        { "PianoI", "PianoI/" },
         { "EPianoI", "EPianoI/" },
         { "EPianoII", "EPianoII/" },
         { "BassI", "BassI/" },

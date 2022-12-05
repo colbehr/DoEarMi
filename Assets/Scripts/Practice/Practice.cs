@@ -148,7 +148,7 @@ public abstract class Practice : MonoBehaviour
     public void completePractice() 
     {
         int xpGain = score * 100;
-        int creditGain = score * 10;
+        int creditGain = score * 2;
         user.update_xp(xpGain);
         user.update_credits(creditGain);
         Debug.Log("Score:" + score + "/" + numberOfQuestions);

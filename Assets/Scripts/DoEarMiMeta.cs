@@ -23,9 +23,9 @@ public sealed class DoEarMiMeta
     private static string filepath = "./Assets/Users/";
     
     // Default instrument for all users
-    private static string default_instrument = "EPianoII";
+    private static string default_instrument = "PianoI";
     // Default icon for all users
-    private static string default_icon = "ProfileIcons/defaultIconTest";
+    private static string default_icon = "ProfileIcons/defaultIcon";
 
     // Instance is null initializer
     private DoEarMiMeta()
