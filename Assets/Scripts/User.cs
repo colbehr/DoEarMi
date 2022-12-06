@@ -13,7 +13,7 @@ public class User
     [SerializeField]
     private string username, uID, password, email;
     [SerializeField]
-    private DateTime last_active;
+    private DateTime last_active, last_boosted, last_frozen;
 
     // STATS
     [SerializeField]
@@ -29,12 +29,6 @@ public class User
     [SerializeField]
     private string active_icon, active_instrument; 
 
-    // private List<Boost> boosts;
-
-    // COMPLETIONS
-    // private List<Lesson> lessons;
-
-
     public User(string username, string password, string email)
     {
         this.meta = DoEarMiMeta.Instance();
@@ -44,6 +38,8 @@ public class User
         this.password = password;  // TODO: plaintext password oof
         this.email = email;
         this.last_active = DateTime.Now;
+        this.last_boosted = DateTime.Now;
+        this.last_frozen = DateTime.Now;
 
         this.xp = 0;
         this.streak = 0;
@@ -134,22 +130,9 @@ public class User
         return this.streak;
     }
 
-    // TODO: how often should this be called? where should it be called from ?
-    public void update_streak()
-    {
-        if (!this.streak_frozen)
-        {
-            // TODO
-            //      check last_active against DateTime.Now
-            //      update streak if necessary
-            //      this.update_last_active() ?
-        }
-
-    }
-
-    // TODO: how and when to check time limit before unfreeze streak ?
     public void freeze_streak()
     {
+        this.last_frozen = DateTime.Now;
         this.streak_frozen = true;
         update_json();
         // TODO: change streak color/add snowflake icon beside it ?
@@ -160,25 +143,54 @@ public class User
         update_json();
         // TODO: change streak color/add fire icon beside it ?
     }
-    public bool isFrozen() {
+
+    // checks against dateTime and updates accordingly
+    public bool isFrozen()
+    {
+        if ((DateTime.Now.Date - last_frozen.Date).TotalDays > 1)
+        {
+            this.streak_frozen = false;
+            update_json();
+        }
         return this.streak_frozen;
+    }
+
+    public void activate_user_boost()
+    {
+        this.last_boosted = DateTime.Now;
+        this.boosted = true;
+        update_json();
     }
     public bool isBoosted()
     {
+        if ((DateTime.Now.Date - last_boosted.Date).TotalHours > 1)
+        {
+            this.boosted = false;
+            update_json();
+        }
         return this.boosted;
     }
+
     public int get_xp()
     {
         return this.xp;
     }
 
+    // xp increase for practice session
     public void update_xp(int xp_base_increase)
     {
-        // TODO: include boosts in formula
-        this.xp += (10*this.streak + xp_base_increase);
+        int boostMult = 1;
+        if (boosted) { boostMult = 2; }
+        this.xp += (10*this.streak + xp_base_increase)*boostMult;
         update_json();
     }
 
+    // base xp increase for shop purchase
+    public void update_xp_purchased(int xpPurchased)
+    {
+        this.xp += xpPurchased;
+        update_json();
+    }
 
     public int get_credits()
     {
@@ -221,6 +233,7 @@ public class User
         {
             Debug.Log(icons[i]);
         }
+        update_json();
     }
 
     public List<string> get_icons()
@@ -228,6 +241,10 @@ public class User
         return this.icons;
     }
 
+    public string get_active_icon()
+    {
+        return this.active_icon;
+    }
 
     // called from all setters
     public void update_json()
@@ -235,22 +252,5 @@ public class User
         this.meta = DoEarMiMeta.Instance();
         this.meta.save_user_data(this);
     }
-
-
-    public string get_active_icon()
-    {
-        return this.active_icon;
-    }
-    // // called from shop on purchase
-    // public void update_icons(string icon_file)
-    // {
-    //     this.icon_filenames.Add(icon_file);
-    // }
-
-    // // called from shop on purchase
-    // public void update_boosts(Boost<T> boost)
-    // {
-    //     this.boosts.Add(boost);
-    // }
 
 }

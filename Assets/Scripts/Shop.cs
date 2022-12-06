@@ -12,6 +12,8 @@ public class Shop : MonoBehaviour
     private static readonly object transaction_padlock = new object();
     private static int[] icon_costs = {150, 400, 1200};
     private static int[] instrument_costs = {250, 400, 250};
+    private static int[] boost_costs = {100, 100, 50};
+    private static string[] boostNames = new string[]{"Boost_FREEZE", "Boost_2X1HR", "Boost_XP"};
     private static int iconsPerPage = 3;
     private Vector3 textShift = new Vector3(17.5f, 0, 0); // used to move cost text after purchase
     private Color32 ownedColor = new Color(189, 231, 230, 255);
@@ -20,6 +22,7 @@ public class Shop : MonoBehaviour
     private string purchaseMessage = "Purchase this @ for * credits?";
     private string cantPurchaseMessage = "Sorry, you don't have enough credits for this.\n\nYou can earn more credits in practice sessions.";
     private string addedMessage = "Purchase successful!\n\nOpen your profile settings to set as your active @.";
+    private string addedMessage2 = "Purchase successful!\n\nEnjoy your @.";
 
     // UI
     // Icons
@@ -28,8 +31,9 @@ public class Shop : MonoBehaviour
     public List<Button> iconPageButtons;
     // Instruments
     public List<GameObject> instrumentPages;
-    public List<GameObject> instrumentGOs; 
+    public List<GameObject> instrumentGOs;
     // Boosts
+    public List<GameObject> boostGOs;
     // Other
     public GameObject creditsText;
     public GameObject purchasePopUp;
@@ -158,10 +162,7 @@ public class Shop : MonoBehaviour
         int cost = spriteNameToCost[spriteName];
 
         // reset curr item for purchase confirmation
-        curr_selected_item[0] = "icon";
-        curr_selected_item[1] = FileDirectory + spriteName;
-        curr_selected_item[2] = cost.ToString();
-        curr_selected_GO = iconGOs[iconNum];
+        set_curr_selected("icon", FileDirectory + spriteName, cost.ToString(), iconGOs[iconNum]);
 
         // if can purchase, open purchase confirm prompt
         if (can_purchase(cost))
@@ -184,10 +185,7 @@ public class Shop : MonoBehaviour
 
         int cost = instrumentNameToCost[name];
 
-        curr_selected_item[0] = "instrument";
-        curr_selected_item[1] = name;
-        curr_selected_item[2] = cost.ToString();
-        curr_selected_GO = instrumentGOs[instrumentNameToIndex[name]];
+        set_curr_selected("instrument", name, cost.ToString(), instrumentGOs[instrumentNameToIndex[name]]);
 
         if (can_purchase(cost))
         {
@@ -198,6 +196,31 @@ public class Shop : MonoBehaviour
         {
             cant_purchase_popup();
         }
+    }
+
+    // Opens prompt popup to confirm purchase or ok popup if its too expensive
+    public void purchase_boost(int boostNum)
+    {
+        int cost = boost_costs[boostNum];
+        set_curr_selected("boost", boostNames[boostNum], cost.ToString(), boostGOs[boostNum]);
+
+        if (can_purchase(cost))
+        {
+            can_purchase_popup(curr_selected_item[0], curr_selected_item[2]);
+        }
+        else
+        {
+            cant_purchase_popup();
+        }
+    }
+
+
+    private void set_curr_selected(string type, string name, string cost, GameObject obj)
+    {
+        curr_selected_item[0] = type;
+        curr_selected_item[1] = name;
+        curr_selected_item[2] = cost;
+        curr_selected_GO = obj;
     }
 
     // set popup window string to match current purchase name and cost
@@ -234,7 +257,9 @@ public class Shop : MonoBehaviour
         }
         else if (itemName.Contains("Boost"))
         {
-            Debug.Log("boosts aren't implemented sorry");
+            activate_user_boost();
+            messageCopy = addedMessage2;
+            Debug.Log("Boost given to user");
         }
         else
         {
@@ -242,9 +267,11 @@ public class Shop : MonoBehaviour
             Debug.Log("instrument added to user collection");
         }
 
+        // subtract cost from user credits
         user.update_credits(-1 * Int32.Parse(curr_selected_item[2]));
         set_single_UI_purchased();
 
+        // display purchase confirmed popup
         messageCopy = messageCopy.Replace("@", curr_selected_item[0]);
         child = okPopUp.transform.GetChild(0).gameObject;
         child.transform.Find("PromptText").transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = messageCopy;
@@ -264,6 +291,7 @@ public class Shop : MonoBehaviour
         return (user.get_credits() >= cost);
     }
 
+    // Initial display of user owned items
     private void set_UI_purchased()
     {
         List<string> user_icons = user.get_icons();
@@ -288,6 +316,7 @@ public class Shop : MonoBehaviour
             }
         }
 
+        // set instruments owned
         foreach(GameObject instrumentGO in instrumentGOs)
         {
             foreach(string instruName in user_instruments)
@@ -303,8 +332,42 @@ public class Shop : MonoBehaviour
                 }
             }
         }
+
+        // set boosts owned
+        if (user.isFrozen() || user.isBoosted())
+        {
+            int boostInd;
+            if (user.isFrozen()) { boostInd = 0; }
+            else                 { boostInd = 1; }
+            iconChild = boostGOs[boostInd].transform.GetChild(0).gameObject;
+            iconChild.GetComponent<TMPro.TextMeshProUGUI>().text = "Owned";
+            iconChild.GetComponent<TMPro.TextMeshProUGUI>().color = ownedColor;
+            iconChild.transform.position -= textShift;
+            iconChild.transform.GetChild(0).gameObject.SetActive(false);
+            boostGOs[boostInd].GetComponent<Button>().interactable = false;
+        }
     }
 
+    private void activate_user_boost()
+    {
+        string purch = curr_selected_item[1];
+        // freeze streak was purchased
+        if (purch == boostNames[0])
+        {
+            user.freeze_streak();
+        }
+        else if (purch == boostNames[1])
+        {
+            user.activate_user_boost();
+        }
+        else if (purch == boostNames[2])
+        {
+            user.update_xp_purchased(500);
+        }
+
+    }
+
+    // Updates owned item display on confirm purchase
     private void set_single_UI_purchased()
     {
         GameObject go = curr_selected_GO;
