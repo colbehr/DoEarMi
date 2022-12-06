@@ -10,6 +10,7 @@ public abstract class Practice : MonoBehaviour
     public Animation practiceScreenAnim;
     public GameObject practiceScreen;
     public GameObject resultPanel;
+    public GameObject practiceModeText;
     public GameObject answerListText;
     public GameObject accuracyText;
     public GameObject expCreditText;
@@ -85,6 +86,7 @@ public abstract class Practice : MonoBehaviour
 
     void initializePractice()
     {
+        practiceModeText.GetComponent<TMPro.TMP_Text>().SetText(practiceModeToString());
         resultPanel.SetActive(false);
         foreach (GameObject button in answerButtons) 
         {
@@ -202,4 +204,7 @@ public abstract class Practice : MonoBehaviour
 
     // Function linked to buttons onClick()
     public abstract void answer();
+
+    // Return title of current practice mode
+    public abstract string practiceModeToString();
 }

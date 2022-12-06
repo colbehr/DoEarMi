@@ -134,4 +134,9 @@ public class PracticeScaleDegrees : Practice
             button.GetComponent<Image>().color = new Color32(255, 80, 80, 255);
         }
     }
+
+    public override string practiceModeToString()
+    {
+        return "Scale Degrees - Major";
+    }
 }
