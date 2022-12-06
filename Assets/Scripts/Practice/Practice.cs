@@ -21,6 +21,7 @@ public abstract class Practice : MonoBehaviour
     public GameObject practiceScreen;
     public GameObject accuracyText;
     public GameObject expCreditText;
+    public GameObject pulse;
     public Animation practiceScreenAnim;
     
     public Button playButton;
@@ -43,6 +44,7 @@ public abstract class Practice : MonoBehaviour
         {
             soundPlayer = gameObject.AddComponent<AudioSource>();
         }
+        loadAnswers();
     }
 
     // OnEnable is called every time GameObejct is enabled
@@ -55,7 +57,6 @@ public abstract class Practice : MonoBehaviour
 
         instrumentLoader = LoadAudioAsInstrument.Instance();
         instrument = instrumentLoader.get_instrument(user.get_active_instrument()); // TODO: get instrument from user
-        loadAnswers();
         initializePractice();
     }
 
@@ -155,7 +156,9 @@ public abstract class Practice : MonoBehaviour
         Debug.Log("Exp increase: " + xpGain + " Currency increase: " + creditGain);
         Debug.Log("User now has " + user.get_xp() + " XP and " + user.get_credits() + " credits");
         accuracyText.GetComponent<TMPro.TMP_Text>().SetText(resultsToString());
-        expCreditText.GetComponent<TMPro.TMP_Text>().SetText("Experience gained: " + xpGain + "\nCredits earned: " + creditGain);
+        expCreditText.GetComponent<TMPro.TMP_Text>().SetText("XP gained: " + xpGain 
+        + " XP\nCurrency earned: " + creditGain
+        + " <sprite=0 color=#E6B436>");
         StartCoroutine(displayResults(2));
     } 
 
@@ -167,5 +170,12 @@ public abstract class Practice : MonoBehaviour
         }
         yield return new WaitForSeconds(delayTime);
         resultPanel.SetActive(true);
+    }
+
+    public void activatePulse() 
+    {
+        if (pulse.activeSelf)
+            pulse.SetActive(false);
+        pulse.SetActive(true);
     }
 }

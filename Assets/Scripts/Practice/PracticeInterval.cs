@@ -62,6 +62,7 @@ public class PracticeInterval : Practice
 
     IEnumerator playQuestionCoroutine()
     {
+        base.activatePulse();
         foreach (GameObject button in answerButtons) 
         {
             button.GetComponent<Button>().enabled = false;
@@ -69,35 +70,35 @@ public class PracticeInterval : Practice
         playButton.enabled = false;
         soundPlayer.PlayOneShot(instrument[currentQuestion.root], 1);
         yield return new WaitForSeconds(0.7F);
-        switch (currentQuestion.interval) {
-        case 1:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 2], 1); // Major 2nd
-            break; 
-        case 2:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 4], 1); // Major 3rd
-            break; 
-        case 3:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 5], 1); // Perfect 4th
-            break; 
-        case 4:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 7], 1); // Perfect 5th
-            break; 
-        case 5:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 9], 1); // Major 6th
-            break; 
-        case 6:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 11], 1); // Major 7th
-            break; 
-        case 7:
-            soundPlayer.PlayOneShot(instrument[currentQuestion.root + 12], 1); // Octave
-            break; 
-        }
+        soundPlayer.PlayOneShot(instrument[currentQuestion.root + getIntervalOffset()], 1);
         playButton.enabled = true;
         foreach (GameObject button in answerButtons) 
         {
             button.GetComponent<Button>().enabled = true;
         }
         Debug.Log("Interval: " + currentQuestion.interval);
+    }
+
+    private int getIntervalOffset()
+    {
+        switch (currentQuestion.interval) {
+        case 1:
+            return 2; // Major 2nd
+        case 2:
+            return 4; // Major 3rd
+        case 3:
+            return 5; // Perfect 4th
+        case 4:
+            return 7; // Perfect 5th 
+        case 5:
+            return 9; // Major 6th
+        case 6:
+            return 11; // Major 7th
+        case 7:
+            return 12; // Octave
+        default:
+            return 0;
+        }
     }
 
     // Function linked to buttons onClick()
@@ -107,6 +108,9 @@ public class PracticeInterval : Practice
         // Check if answer is correct
         if (answerSet[currentQuestion.interval].getName() == button.name)
         {
+            base.activatePulse();
+            soundPlayer.PlayOneShot(instrument[currentQuestion.root], 1);
+            soundPlayer.PlayOneShot(instrument[currentQuestion.root + getIntervalOffset()], 1);
             base.correct(button, currentQuestion.interval);
         } 
         else 
