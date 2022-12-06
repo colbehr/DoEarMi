@@ -52,6 +52,7 @@ public class PracticeChord : Practice
 
     // Play chord based on current Question
     public override void playQuestion() {
+        base.activatePulse();
         switch (currentQuestion.chordType) {
         case 1:
             soundPlayer.PlayOneShot(instrument[currentQuestion.root], 1);

@@ -85,6 +85,7 @@ public class PracticeScaleDegrees : Practice
 
     IEnumerator playQuestionCoroutine()
     {
+        base.activatePulse();
         foreach (GameObject button in answerButtons) 
         {
             button.GetComponent<Button>().enabled = false;
@@ -122,6 +123,7 @@ public class PracticeScaleDegrees : Practice
         // Check if answer is correct
         if (answerSet[currentQuestion.degree].getName() == button.name) 
         {
+            base.activatePulse();
             soundPlayer.PlayOneShot(instrument[currentQuestion.key + currentQuestion.degree], 1);
             base.correct(button, currentQuestion.degree);
         } 
