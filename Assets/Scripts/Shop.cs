@@ -89,6 +89,7 @@ public class Shop : MonoBehaviour
         icon_page_change(0);
         init_sprite_costs();
         init_instrument_costs();
+        init_boost_costs();
     }
 
     void OnEnable()
@@ -142,6 +143,15 @@ public class Shop : MonoBehaviour
             iconGOs[i].transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = icon_costs[cost_ind].ToString();
             spriteNameToCost.Add(iconGOs[i].GetComponent<Image>().sprite.name, icon_costs[cost_ind]);
         }
+    }
+
+
+    private void init_boost_costs()
+    {
+        for (int i=0; i<boostGOs.Count; i++)
+        {
+            boostGOs[i].transform.GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = boost_costs[i].ToString();
+        }      
     }
 
     // Weirdly done for now bc running out of time, should probs use dictionary
