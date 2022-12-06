@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class Pulse : MonoBehaviour 
 {
     public GameObject pulse;
-    private float range = 0.85f;
     private Image pulseImage;
-    private float transparency;
+    private float range;
 
     // Set these values in inspector
     public float pulseSpeed;
@@ -24,6 +23,7 @@ public class Pulse : MonoBehaviour
 
     private void Update() 
     {
+        float transparency = 255;
         range += rangeMax * (Time.deltaTime * pulseSpeed);
         if (range > rangeMax) 
         {

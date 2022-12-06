@@ -7,33 +7,35 @@ using System.Linq;
 
 public abstract class Practice : MonoBehaviour
 {
-    public AudioSource soundPlayer;
-    public LoadAudioAsInstrument instrumentLoader;
-    public List<AudioClip> instrument;
-
-    public Dictionary<int, Answer> answerSet = new Dictionary<int, Answer> ();
-    public int numberOfQuestions = 5;
-    public int questionNumber;
-    public int score;
-    // True if user failed current question
-    public bool failed;
-    public List<GameObject> answerButtons = new List<GameObject>();
+    public Animation practiceScreenAnim;
     public GameObject practiceScreen;
+    public GameObject resultPanel;
+    public GameObject answerListText;
     public GameObject accuracyText;
     public GameObject expCreditText;
     public GameObject pulse;
-    public Animation practiceScreenAnim;
-    
+
     public Button playButton;
     public Button retryButton;
+
+    public AudioSource soundPlayer;
+    public LoadAudioAsInstrument instrumentLoader;
+    public List<AudioClip> instrument;
+    public DoEarMiMeta meta;
+    public User user;
+    
+    public List<GameObject> answerButtons = new List<GameObject>();
+    public Dictionary<int, Answer> answerSet = new Dictionary<int, Answer> ();
+
+    public int score;
+    public int questionNumber;
+    public int numberOfQuestions = 10;
+    // True if user failed current question
+    public bool failed;
+
     public Slider progressBar;
     public float progress;
     public float fillSpeed = 0.15f;
-
-    public GameObject resultPanel;
-
-    public DoEarMiMeta meta;
-    public User user;
 
     // Start is called the first time GameObejct is enabled
     void Start()
@@ -103,21 +105,6 @@ public abstract class Practice : MonoBehaviour
         generateQuestion(0.5F);
     }
 
-    // Randomly generate and setup a question after short delay
-    public abstract void generateQuestion(float delay);
-
-    // Play audio based on current Question
-    public abstract void playQuestion();
-
-    // Function linked to buttons onClick()
-    public abstract void answer();
-
-    // Initialize answer dictionary
-    public abstract void loadAnswers();
-
-    // Create results string based on practice mode
-    public abstract string resultsToString();
-
     // Called on correct answer
     public void correct(GameObject button, int answerKey) {
         Debug.Log("Correct");
@@ -155,7 +142,6 @@ public abstract class Practice : MonoBehaviour
         Debug.Log("Score:" + score + "/" + numberOfQuestions);
         Debug.Log("Exp increase: " + xpGain + " Currency increase: " + creditGain);
         Debug.Log("User now has " + user.get_xp() + " XP and " + user.get_credits() + " credits");
-        accuracyText.GetComponent<TMPro.TMP_Text>().SetText(resultsToString());
         expCreditText.GetComponent<TMPro.TMP_Text>().SetText("XP gained: " + xpGain 
         + " XP\nCurrency earned: " + creditGain
         + " <sprite=0 color=#E6B436>");
@@ -164,6 +150,8 @@ public abstract class Practice : MonoBehaviour
 
     IEnumerator displayResults(float delayTime)
     {
+        answerListText.GetComponent<TMPro.TMP_Text>().SetText(answerListToString());
+        accuracyText.GetComponent<TMPro.TMP_Text>().SetText(accuracyToString());
         foreach (GameObject button in answerButtons) 
         {
             button.GetComponent<Button>().enabled = false;
@@ -172,10 +160,46 @@ public abstract class Practice : MonoBehaviour
         resultPanel.SetActive(true);
     }
 
+    private string answerListToString() 
+    {
+        string results = "";
+
+        foreach(KeyValuePair<int, Answer> entry in answerSet)
+        {
+            results += entry.Value.getName() + "\n";
+        }
+
+        return results;
+    }
+
+    private string accuracyToString() 
+    {
+        string results = "";
+
+        foreach(KeyValuePair<int, Answer> entry in answerSet)
+        {
+            results += entry.Value.accuracyToString();
+        }
+
+        return results;
+    }
+
     public void activatePulse() 
     {
         if (pulse.activeSelf)
             pulse.SetActive(false);
         pulse.SetActive(true);
     }
+
+    // Initialize answer dictionary
+    public abstract void loadAnswers();
+
+    // Randomly generate and setup a question after short delay
+    public abstract void generateQuestion(float delay);
+
+    // Play audio based on current Question
+    public abstract void playQuestion();
+
+    // Function linked to buttons onClick()
+    public abstract void answer();
 }

@@ -33,14 +33,13 @@ public class Answer
         return name;
     }
 
-    public string toString()
-    {
-        string answerString = name + "\t\tAccuracy: " + numCorrect + "/" + total;
+    public string accuracyToString() {
+        string accuracyString = numCorrect + "/" + total;
         if (total != 0) 
-            answerString += " (" + Math.Round((float)numCorrect/total*100) + "%)\n";
+            accuracyString += " (" + Math.Round((float)numCorrect/total*100) + "%)\n";
         else 
-            answerString += " (NA)\n";
+            accuracyString += " (NA)\n";
 
-        return answerString;
+        return accuracyString;
     }
 }

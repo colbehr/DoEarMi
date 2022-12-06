@@ -95,16 +95,4 @@ public class PracticeChord : Practice
             button.GetComponent<Image>().color = new Color32(255, 80, 80, 255);
         }
     }
-
-    public override string resultsToString() 
-    {
-        string results = "";
-
-        foreach(KeyValuePair<int, Answer> entry in answerSet)
-        {
-            results += entry.Value.toString();
-        }
-
-        return results;
-    }
 }
