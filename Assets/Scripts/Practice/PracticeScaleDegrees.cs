@@ -107,6 +107,7 @@ public class PracticeScaleDegrees : Practice
         soundPlayer.PlayOneShot(instrument[currentQuestion.key + 4], 1);
         soundPlayer.PlayOneShot(instrument[currentQuestion.key + 7], 1);
         yield return new WaitForSeconds(1);
+        base.activatePulse();
         soundPlayer.PlayOneShot(instrument[currentQuestion.key + currentQuestion.degree], 1);
         playButton.enabled = true;
         foreach (GameObject button in answerButtons) 
