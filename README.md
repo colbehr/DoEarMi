@@ -18,10 +18,9 @@ DoEarMi is a mobile application that assists beginner musicians in practicing id
 - Clone the repo
 - Open the repo using Unity Hub
   - You may need to manually add the project to Unity Hub via the Open drowndown
-  ![AddProject](AddProject.png)
-  <img src="AddProject.png" width="200">
+  <img src="AddProject.png" width="300">
 - Ensure that the project using Unity v2020.3.18f1 in the editor version dropdown
-  ![EditorVersion](EditorVersion.png)
+  <img src="EditorVersion.png" width="300">
 - The project should now run.
 
 <!-- Markdown link & img dfn's -->
