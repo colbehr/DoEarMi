@@ -25,7 +25,7 @@ public class Leaderboard : MonoBehaviour
         users.Sort((p1, p2) => p2.get_xp().CompareTo(p1.get_xp()));
         int rank = 1;
         foreach (User user in users){
-            offset += new Vector3(0, -55, 0);
+            offset += new Vector3(0, -205, 0);
             // create prefab
             GameObject i = Instantiate(userPosPrefab, leaderboardPositions.transform.position + offset, rotation, leaderboardPositions.transform);
             /*
