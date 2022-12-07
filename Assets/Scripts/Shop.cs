@@ -15,7 +15,7 @@ public class Shop : MonoBehaviour
     private static int[] boost_costs = {100, 100, 50};
     private static string[] boostNames = new string[]{"Boost_FREEZE", "Boost_2X1HR", "Boost_XP"};
     private static int iconsPerPage = 3;
-    private Vector3 textShift = new Vector3(17.5f, 0, 0); // used to move cost text after purchase
+    private Vector3 textShift = new Vector3(75.0f, 0, 0); // used to move cost text after purchase
     private Color32 ownedColor = new Color(189, 231, 230, 255);
 
     // purchase message, replace @ with object type and * with credits cost
