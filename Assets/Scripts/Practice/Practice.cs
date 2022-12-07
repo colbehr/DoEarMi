@@ -138,14 +138,14 @@ public abstract class Practice : MonoBehaviour
     public void completePractice() 
     {
         int xpGain = score * 100;
-        int creditGain = score * 2;
+        int creditGain = score * 10;
         user.update_xp(xpGain);
         user.update_credits(creditGain);
         Debug.Log("Score:" + score + "/" + numberOfQuestions);
         Debug.Log("Exp increase: " + xpGain + " Currency increase: " + creditGain);
         Debug.Log("User now has " + user.get_xp() + " XP and " + user.get_credits() + " credits");
         expCreditText.GetComponent<TMPro.TMP_Text>().SetText("XP gained: " + xpGain 
-        + " XP\nCurrency earned: " + creditGain
+        + " XP\nCredits earned: " + creditGain
         + " <sprite=0 color=#E6B436>");
         StartCoroutine(displayResults(2));
     } 
