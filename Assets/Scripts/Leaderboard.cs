@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class Leaderboard : MonoBehaviour
              * fourth is xp
              */
 
-            i.transform.GetChild(1).GetComponent<TMPro.TMP_Text>().SetText(user.get_username().ToUpper());
+            i.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(user.get_active_icon());
+            i.transform.GetChild(1).GetComponent<TMPro.TMP_Text>().SetText(user.get_username());
             i.transform.GetChild(3).GetComponent<TMPro.TMP_Text>().SetText(""+user.get_xp());
             i.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().SetText(""+rank);
             rank++;
