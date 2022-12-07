@@ -20,7 +20,7 @@ DoEarMi is a mobile application that assists beginner musicians in practicing id
   - You may need to manually add the project to Unity Hub via the Open drowndown
 <img src="AddProject.png" width="300">
 - Ensure that the project using Unity v2020.3.18f1 in the editor version dropdown
-<img src="EditorVersion.png" width="250">
+<img src="EditorVersion.png" width="300">
 - The project should now run.
 
 <!-- Markdown link & img dfn's -->
