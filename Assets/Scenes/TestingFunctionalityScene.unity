@@ -1918,7 +1918,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1792779776}
   m_HandleRect: {fileID: 1792779775}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9864865
   m_Size: 0.9999833
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 781462245}
   m_Direction: 2
   m_Value: 1.0000004
-  m_Size: 0.78240365
+  m_Size: 0.78240377
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21607,7 +21607,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1308269028}
   m_HandleRect: {fileID: 1308269027}
   m_Direction: 2
-  m_Value: -0.013513514
+  m_Value: -0.02027027
   m_Size: 0.9999833
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -25376,7 +25376,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 816327272}
   m_HandleRect: {fileID: 816327271}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9864865
   m_Size: 0.9999833
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36013,17 +36013,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174675010}
   m_CullTransparentMesh: 1
---- !u!114 &1175686198 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1417600669336947036, guid: 2dcce04f8350e5d4e86ebdd750f0fb38, type: 3}
-  m_PrefabInstance: {fileID: 317685017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1180481397
 GameObject:
   m_ObjectHideFlags: 0
@@ -50081,7 +50070,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 573626894}
   m_HandleRect: {fileID: 573626893}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9864865
   m_Size: 0.9999833
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -60796,7 +60785,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1647762145}
   m_Direction: 2
   m_Value: 1.0000006
-  m_Size: 0.846123
+  m_Size: 0.84612304
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -65636,7 +65625,7 @@ MonoBehaviour:
   emailText: {fileID: 1439693613}
   instrumentsDropdown: {fileID: 266937602}
   profileManager: {fileID: 1267895057}
-  icon: {fileID: 1175686198}
+  icon: {fileID: 1528247023}
   user:
     username: 
     uID: 
@@ -65938,7 +65927,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 868383692}
   m_HandleRect: {fileID: 868383691}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9864865
   m_Size: 0.9999833
   m_NumberOfSteps: 0
   m_OnValueChanged:

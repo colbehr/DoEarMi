@@ -20,7 +20,7 @@ public class Leaderboard : MonoBehaviour
         offset = Vector3.zero;
         rotation = Quaternion.Euler(0, 0, 0);
         DoEarMiMeta meta = DoEarMiMeta.Instance();
-        users = meta.load_all_users();
+        users = meta.get_users();
         currUser = meta.get_curr_user();
         users.Sort((p1, p2) => p2.get_xp().CompareTo(p1.get_xp()));
         int rank = 1;

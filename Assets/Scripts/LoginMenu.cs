@@ -27,7 +27,7 @@ public class LoginMenu : MonoBehaviour
     private string userPassword; // TODO: plaintext password oof
     private bool nameFilled;
     private bool passwordFilled;
-
+    
     // Start is called before the first frame update
     void Start()
     {
