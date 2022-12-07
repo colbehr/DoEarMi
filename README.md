@@ -15,7 +15,7 @@ DoEarMi is a mobile application that assists beginner musicians in practicing id
   - Android Module
 
 #### Development setup steps:
-- Clone the repo
+- Clone this repo
 - Open the Unity Hub
   - You may need to manually add the project to Unity Hub via the Open drowndown
 - Ensure that the project using Unity v2020.3.18f1 in the editor version dropdown
