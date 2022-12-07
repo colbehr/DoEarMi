@@ -66082,6 +66082,7 @@ MonoBehaviour:
   instrumentsDropdown: {fileID: 266937602}
   profileManager: {fileID: 1267895057}
   icon: {fileID: 1175686198}
+  iconChangeIcon: {fileID: 1528247023}
   user:
     username: 
     uID: 

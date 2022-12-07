@@ -12,6 +12,7 @@ public class SettingsMenu : MonoBehaviour
     public TMPro.TMP_Dropdown instrumentsDropdown;
     public GameObject profileManager;
     public Image icon;
+    public Image iconChangeIcon;
 
     // Backend Fields
     private DoEarMiMeta meta;
@@ -35,8 +36,9 @@ public class SettingsMenu : MonoBehaviour
         usernameText.GetComponent<TMPro.TMP_InputField>().text = user.get_username().ToString();
         emailText.GetComponent<TMPro.TMP_InputField>().text = user.get_email().ToString();
 
-        Sprite sprite = Resources.Load<Sprite>(meta.get_default_icon());
+        Sprite sprite = Resources.Load<Sprite>(user.get_active_icon());
         icon.GetComponent<Image>().sprite = sprite;
+        iconChangeIcon.GetComponent<Image>().sprite = sprite;
         instrumentsDropdown.ClearOptions();
         // TODO: current instrument is not top instrument in list
         instrumentsDropdown.AddOptions(user.get_instruments());
