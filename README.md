@@ -1,5 +1,5 @@
 # DoEarMi - Musical Ear Training App
-> The goal of our project is to develop a web application to assist users in practicing identifying scale degrees by ear. This could be limited to Major scale, or be expanded to include other commonly used scales, such as Natural/Harmonic Minor. We also aim to include practice sessions focusing on melodic dictation if our relatively short time frame allows it. Our system could provide the user with scale degree lessons, practice exercises, or tests/quizzes. While our project is similar to existing apps, we will make some tweaks to focus more closely on scale degrees, while keeping it easy and pleasant to use.
+> The goal of our project is to develop an application to assist users in practicing identifying scale degrees by ear. This could be limited to Major scale, or be expanded to include other commonly used scales, such as Natural/Harmonic Minor. We also aim to include practice sessions focusing on melodic dictation if our relatively short time frame allows it. Our system could provide the user with scale degree lessons, practice exercises, or tests/quizzes. While our project is similar to existing apps, we will make some tweaks to focus more closely on scale degrees, while keeping it easy and pleasant to use.
 
 
 ![License][license-image]  ![Stars][stars-image]
