@@ -23,8 +23,9 @@ public class LoginMenu : MonoBehaviour
 
     // Backend
     private DoEarMiMeta meta;
+    private PasswordManager pwm;
     private string username;
-    private string userPassword; // TODO: plaintext password oof
+    private string userPassword;
     private bool nameFilled;
     private bool passwordFilled;
 
@@ -37,6 +38,7 @@ public class LoginMenu : MonoBehaviour
         failText.SetActive(false); 
 
         meta = DoEarMiMeta.Instance();
+        pwm = PasswordManager.Instance();
 
         signInButton.GetComponent<Button>().interactable = false;
         this.nameFilled = false;
@@ -69,7 +71,7 @@ public class LoginMenu : MonoBehaviour
     {
         User user = meta.find_user(username);
 
-        if (user != null && user.get_password() == userPassword)
+        if (user != null && pwm.is_correct_password(userPassword, user))
         {
             Debug.Log("found user for sign in");
 

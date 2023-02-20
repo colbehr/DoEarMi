@@ -8,10 +8,11 @@ public class User
 {   
     // Meta
     DoEarMiMeta meta;
+    PasswordManager pwm;
 
     // BASIC INFO
     [SerializeField]
-    private string username, uID, password, email;
+    private string username, uID, password_hash, password_salt, email;
     [SerializeField]
     private DateTime last_active, last_boosted, last_frozen;
 
@@ -32,10 +33,12 @@ public class User
     public User(string username, string password, string email)
     {
         this.meta = DoEarMiMeta.Instance();
+        this.pwm = PasswordManager.Instance();
 
         this.username = username;
         this.uID = new_uID();
-        this.password = password;  // TODO: plaintext password oof
+        this.password_salt = pwm.create_salt();
+        this.password_hash = pwm.generate_salt_hash(password, pwm.text_to_byte(password_salt));
         this.email = email;
         this.last_active = DateTime.Now;
         this.last_boosted = DateTime.Now;
@@ -90,14 +93,20 @@ public class User
         update_json();
     }
 
-    public string get_password() // oof
+    public string get_password_hash()
     {
-        return this.password;
+        return this.password_hash;
+    }
+
+    public string get_password_salt()
+    {
+        return this.password_salt;
     }
 
     public void update_password(string password)
     {
-        this.password = password;  // TODO: plaintext password oof
+        this.password_salt = pwm.create_salt();
+        this.password_hash = pwm.generate_salt_hash(password, pwm.text_to_byte(password_salt));
         update_json();
     }
 

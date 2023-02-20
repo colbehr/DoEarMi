@@ -22,7 +22,7 @@ public class SettingsMenu : MonoBehaviour
     private void Start()
     {
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
 
     }
 
