@@ -75,7 +75,7 @@ public sealed class DoEarMiMeta
         string uID = user.get_uID();
         string user_file = "user_" + uID + ".json";
         user_files.Add(uID, user_file);
-        user_names.Add(user.get_username(), user.get_password());
+        user_names.Add(user.get_username(), user.get_password_hash());
 
 
         // save new user data
@@ -86,13 +86,12 @@ public sealed class DoEarMiMeta
     // if we call this from this class, we overflow because user also needs this class
     public void synthetic_user_data()
     {
-        string[] randomUsername = new string[] { "HackSource", "ArmDomino", "PonyChain", "BrownHip", "FreakyUnity", "CottonTrash", "SoftPro", "BravoMouth", "LooHammer", "RedWalnut", "MewRapture", "AbyssBalloon", "MountCloud", "ToeBeetle", "TradeBling", "StrifeLab", "ReinNet", "DittoFate", "FlatRugby", "SublimeMisfit", "PuddingValley", "JungleRealm", "UnholyCastle", "HonMisfit", "HoodieSalter", "PastKitten", "SkunkFrenzy", "GabSucker", "StereoSoldier", "LedRude", "BrownBale", "ExpatCatcher", "RabbiBrigade", "ArtsyCaptain", "GladNurse", "RiseAgency", "LimeTango", "SoapCob", "CafeBond", "WoollySquad", "MissionTest", "RabbitBomb", "BranchNorm", "HideMagnum", "CandidSparrow", "WeepingWake", "HydroDelight", "GumCity", "OfficerSprite", "ElegantHill", "KiloJoke", "PawBloom", "BanterWonder", "BiggerBeam", "MacroPanda", "PsychPile", "PuckPeanut",  "GentleBull", "TruckFort", "RoteActive", "FizzyFable", "ByteDrink", "CheesyTaker", "SadRobe", "PonchoRand", "ChicLog", "MoodySlave", "CraftNone", "RiverRabbit", "TalonSwitch", "AbyssalChoice", "GentlePilgrim", "LoopHop", "HonestAge", "ShadyParson", "SealLawyer", "PlanPharaoh", "SlimRoyalty", "CorpusGrunt", "LoudDraw", "RagBeater", "WifeAlchemy", "TechieNexus", "MonsterMilk", "LiftedWaste", "DubiousCoffee", "AverageJanitor", "GossipGirl", "BisonArmour", "DynastyFame", "PugVenture", "ViciousWasabi", "DayBread", "BrazenSwift", "SketchyBeast", "FeelingWord", "PaperMachine", "BrassHorse", "DruidTycoon", "PlagueGarage", "QueerWorker", "BoneBurrito", "GloomyVet", "CreepEngine", "MonkeyTrooper", "CorruptJag", "OrganicEnigma", "BloggerDrop", "SaintDelight", "FactNose", "GamingRadar", "SackColon", "SharpCrew", "HarshBoxer", "EnigmaPerk", "FlowerJinx" };
+        string[] randomUsername = new string[] { "SampleUser", "HackSource", "ArmDomino", "PonyChain", "BrownHip", "FreakyUnity", "SoftPro", "BravoMouth", "LooHammer", "RedWalnut", "MewRapture", "AbyssBalloon", "MountCloud", "ToeBeetle", "TradeBling", "StrifeLab", "ReinNet", "DittoFate", "FlatRugby", "SublimeMisfit", "PuddingValley", "JungleRealm", "HonMisfit", "PastKitten", "SkunkFrenzy", "StereoSoldier", "LedRude", "ExpatCatcher", "ArtsyCaptain", "GladNurse", "RiseAgency", "LimeTango", "SoapCob", "CafeBond", "WoollySquad", "MissionTest", "BranchNorm", "CandidSparrow", "WeepingWake", "HydroDelight", "GumCity", "ElegantHill", "KiloJoke", "PawBloom", "BanterWonder", "BiggerBeam", "MacroPanda", "PsychPile", "GentleBull", "TruckFort", "RoteActive", "FizzyFable", "ByteDrink", "CheesyTaker", "SadRobe", "PonchoRand", "ChicLog", "CraftNone", "RiverRabbit", "TalonSwitch", "AbyssalChoice", "LoopHop", "HonestAge", "ShadyParson", "SealLawyer", "PlanPharaoh", "CorpusGrunt", "LoudDraw", "RagBeater", "TechieNexus", "LiftedWaste", "DubiousCoffee", "BisonArmour", "DynastyFame", "PugVenture", "ViciousWasabi", "DayBread", "BrazenSwift", "SketchyBeast", "FeelingWord", "PaperMachine", "BrassHorse", "DruidTycoon", "BoneBurrito", "GloomyVet", "MonkeyTrooper", "CorruptJag", "OrganicEnigma", "BloggerDrop", "SaintDelight", "FactNose", "GamingRadar", "SharpCrew", "HarshBoxer", "EnigmaPerk", "FlowerJinx" };
         int rnd = Random.Range(0, randomUsername.Length);
-        Debug.Log(randomUsername[rnd]);
 
         for(int i=0; i<randomUsername.Length; i++)
         {
-            User user = new User((string)randomUsername[i], "password1", (string)randomUsername[i] + "@email.com");
+            User user = new User((string)randomUsername[i], "password123", (string)randomUsername[i] + "@email.com");
             user.update_xp(Random.Range(0, 1200));
             save_user_data(user);
         }

@@ -10,6 +10,7 @@ using UnityEngine;
 public class Navigation : MonoBehaviour
 {
     public GameObject buttonHighlight;
+    public GameObject createAccountScreen;
     public GameObject practiceScreen;
     public GameObject profileScreen;
     public GameObject chordsLessonScreen;
@@ -30,6 +31,7 @@ public class Navigation : MonoBehaviour
     public GameObject settingsManager;
     public GameObject profileManager;
     public GameObject shopManager;
+    public GameObject createAccountManager;
     public GameObject leaderboardManager;
     public GameObject lessonsManagerScaleDeg;
 
@@ -41,6 +43,7 @@ public class Navigation : MonoBehaviour
     private Animation scaleDegLessonScreenAnim;
     private Animation mainScreensAnim;
     private Animation storeScreenAnim;
+    private Animation createAccountScreenAnim;
     private Animation profileScreenAnim;
     private Animation settingsScreenAnim;
     private string currentLocation;
@@ -56,6 +59,7 @@ public class Navigation : MonoBehaviour
         scaleDegLessonScreenAnim = scaleDegLessonScreen.GetComponent<Animation>();
         profileScreenAnim = profileScreen.GetComponent<Animation>();
         storeScreenAnim = storeScreen.GetComponent<Animation>();
+        createAccountScreenAnim = createAccountScreen.GetComponent<Animation>();
         mainScreensAnim = mainScreens.GetComponent<Animation>();
         settingsScreenAnim = settingsScreen.GetComponent<Animation>();
         currentLocation = "practice";
@@ -132,6 +136,19 @@ public class Navigation : MonoBehaviour
     }
 
 
+    public void openCreateAccount()
+    {
+        createAccountManager.SetActive(true);
+        createAccountScreenAnim.Play("OverlayShow");
+        print("openCreate");
+    }
+
+    public void closeCreateAccount()
+    {
+        createAccountManager.SetActive(false);
+        createAccountScreenAnim.Play("OverlayHide");
+        print("closeCreate");
+    }
     public void openStore()
     {
         shopManager.SetActive(true);
